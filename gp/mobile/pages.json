@@ -1,0 +1,170 @@
+{
+	"pages": [
+		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"snowyCode": "login",
+			"path": "pages/login",
+			"style": {
+				"navigationBarTitleText": "登录",
+				"enablePullDownRefresh": false,
+				//#ifdef H5
+				"navigationStyle": "custom"
+				//#endif
+			}
+		},
+		{
+			"path": "pages/home/index",
+			"style": {
+				"navigationBarTitleText": "首页",
+				"navigationStyle": "custom"
+				
+			}
+		},
+		{
+			"path": "pages/work/index",
+			"style": {
+				"navigationBarTitleText": "工作台",
+				//#ifdef H5
+				"navigationStyle": "custom"
+				//#endif
+			}
+		},
+		{
+			"path": "pages/biz/org/index",
+			"style": {
+				"navigationBarTitleText": "机构管理",
+				//#ifdef H5
+				"navigationStyle": "custom"
+				//#endif
+			}
+		},
+		{
+			"path": "pages/biz/org/form",
+			"style": {
+				"navigationBarTitleText": "机构管理",
+				"onReachBottomDistance": 50, //50代表距离底部多少的距离 这个根据自己的需求 一般都是50
+				//#ifdef H5
+				"navigationStyle": "custom"
+				//#endif
+			}
+		},
+		{
+			"path": "pages/biz/position/index",
+			"style": {
+				"navigationBarTitleText": "职位管理",
+				//#ifdef H5
+				"navigationStyle": "custom"
+				//#endif
+			}
+		},
+		{
+			"path": "pages/biz/position/form",
+			"style": {
+				"navigationBarTitleText": "职位管理",
+				//#ifdef H5
+				"navigationStyle": "custom"
+				//#endif
+			}
+		},
+		{
+			"path": "pages/biz/user/index",
+			"style": {
+				"navigationBarTitleText": "用户管理",
+				"enablePullDownRefresh": true,
+				"onReachBottomDistance": 50, //50代表距离底部多少的距离 这个根据自己的需求 一般都是50
+				//#ifdef H5
+				"navigationStyle": "custom"
+				//#endif
+			}
+		},
+		{
+			"path": "pages/biz/user/form",
+			"style": {
+				"navigationBarTitleText": "用户管理",
+				// "enablePullDownRefresh": true,
+				"onReachBottomDistance": 50, //50代表距离底部多少的距离 这个根据自己的需求 一般都是50
+				//#ifdef H5
+				"navigationStyle": "custom"
+				//#endif
+			}
+		},
+		{
+			"path": "pages/mine/index",
+			"style": {
+				"navigationBarTitleText": "我的",
+				//#ifdef H5
+				"navigationStyle": "custom"
+				//#endif
+			}
+		},
+		{
+			"path": "pages/mine/info/index",
+			"style": {
+				"navigationBarTitleText": "个人信息",
+				"enablePullDownRefresh": false,
+				//#ifdef H5
+				"navigationStyle": "custom"
+				//#endif
+			}
+		},
+		{
+			"path": "pages/mine/info/edit",
+			"style": {
+				"navigationBarTitleText": "编辑资料",
+				//#ifdef H5
+				"navigationStyle": "custom"
+				//#endif
+			}
+		},
+		{
+			"path": "pages/mine/pwd/index",
+			"style": {
+				"navigationBarTitleText": "修改密码",
+				//#ifdef H5
+				"navigationStyle": "custom"
+				//#endif
+			}
+		},
+		{
+			"path": "pages/mine/setting/index",
+			"style": {
+				"navigationBarTitleText": "应用设置",
+				"enablePullDownRefresh": false,
+				//#ifdef H5
+				"navigationStyle": "custom"
+				//#endif
+			}
+		}
+	],
+	"tabBar": {
+		"color": "#000000",
+		"selectedColor": "#000000",
+		"borderStyle": "white",
+		"backgroundColor": "#ffffff",
+		"list": [{
+				"pagePath": "pages/home/index",
+				"iconPath": "static/images/tabbar/home.png",
+				"selectedIconPath": "static/images/tabbar/home_.png",
+				"text": "首页"
+			}, {
+				"pagePath": "pages/work/index",
+				"iconPath": "static/images/tabbar/work.png",
+				"selectedIconPath": "static/images/tabbar/work_.png",
+				"text": "工作台"
+			},
+			{
+				"pagePath": "pages/mine/index",
+				"iconPath": "static/images/tabbar/mine.png",
+				"selectedIconPath": "static/images/tabbar/mine_.png",
+				"text": "我的"
+			}
+		]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"uniIdRouter": {}
+}
