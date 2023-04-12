@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>
+自选
+</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <link href="/static/css/mui.min.css" rel="stylesheet">
+    <link href="/static/css/person.css" rel="stylesheet">
+    
+<style type="text/css">
+	.market_nav{
+		margin-bottom: 0;
+	}
+	.market_nav span{
+		width: 100%;
+		text-align: center;
+		height: 38px;
+		line-height: 38px;
+		background: #eeeeee;
+		font-size: 14.8px;
+		color: #333;
+		border-bottom: 2px solid #eee;
+	}
+	.market_nav span.active{
+		border-bottom: 2px solid #ff0202;
+		color: red;
+	}
+	.zhishu_list{
+		/*padding-right: 8px;*/
+		width: 95%;
+		margin: 15px auto;
+		background-color: #FFF;
+		border-radius: 10px;
+		box-shadow: 0 0 10px #e6e6e6;
+	}
+	.zhishu_list li{
+		width: 100%;
+		text-align: center;
+		/*margin-left: 8px;*/
+		/*background: #f60201;*/
+		margin-top: 8px;
+		margin-bottom: 8px;
+		/*padding: 8px 12px;*/
+		padding: 0 6px;
+	}
+	.zhishu_list li:nth-child(2){
+		border-left: 1px solid #EEE;
+		border-right: 1px solid #EEE;
+	}
+	.zhishu_list li p{
+		margin-bottom: 0;
+		color: #2F2F2F;
+		font-size: 12px;
+	}
+	.zhishu_list li p:nth-child(2){
+		font-weight: 600;
+	}
+	.zhi_price{
+		font-size: 16px!important;
+	}
+	.zhi_s_title{
+		height: 25px;
+		line-height: 25px;
+		margin-bottom: 0;
+		/*background: #e3f2f9;*/
+		color: #6f6f6f;
+		font-size: 14.8px;
+		padding: 0 14px;
+	}
+	.zhi_s_title img{
+		width: 15px;
+		height: 12px;
+		vertical-align: middle;
+	}
+	.zhi_s_list li div{
+		width: 100%;
+		text-align: center;
+		font-size: 14.8px;
+		color: #f60300;
+		height: 56px;
+		line-height: 56px;
+	}
+	.zhi_s_list li div p{
+		font-size: 14.8px;
+	}
+
+	.zhi_s_list li{
+		/*border-bottom: 1px solid #efefef;*/
+		width: 95%;
+		margin: 0 auto 10px auto;
+		background-color: #FFF;
+		border-radius: 10px;
+		box-shadow: 0 0 10px #e6e6e6;
+	}
+	.zhi_s_list .zhi_l_name p{
+		margin-bottom: 0;
+		line-height: 21px;
+		color: #2F2F2F;
+	}
+	.zhi_s_list .zhi_l_name p:nth-child(2){
+		color: #A9A9A9;
+		font-size: 13px;
+	}
+	.zhi_l_name{
+		padding-top: 8px;
+	}
+	body{
+		padding-bottom: 74px;
+	}
+	.banzhi_list li:nth-child(-n+4) {
+		border-right: 1px solid #eee;
+	}
+	.banzhi_list li:nth-child(n+5) {
+		border-right: 1px solid #eee;
+		border-top: 1px solid #eee;
+		border-bottom: 1px solid #eee;
+	}
+	.banzhi_list li{
+		float: left;
+		width: calc(100% / 4);
+		text-align: center;
+		padding: 8px 0;
+	}
+	.banzhi_list li p{
+		margin-bottom: 0;
+	}
+	.banzhi_name{
+		font-size: 14.8px;
+		color: #333;
+	}
+	.banzhi_per{
+		color: #f60300;
+		font-size: 14.4px;
+	}
+</style>
+
+</head>
+
+<body class="  mui-ios mui-ios-10 mui-ios-10-3">
+
+    
+<header class="strategy_top">
+	<p>
+		<a href="javascript:void(0);" class="active">沪深</a>
+		<a href="/user/optional.html" >自选</a>
+		
+	</p>
+</header>
+
+<!-- <p class="market_nav flex_nowrap">
+	<span data-url="market_nav_con1" class="active">沪深</span>
+	<span data-url="market_nav_con2">板块</span>
+	<span class="tab1" data-url="market_nav_con3">创业</span>
+</p> -->
+
+
+<ul class="flex_nowrap zhishu_list">
+	<li>
+		<p class="zhi_name"></p>
+		<p class="zhi_price"></p>
+		<p class="clear_fl zhi_info">
+			<span class="lf"></span>
+			<span class="rt"></span>
+		</p>
+	</li>
+
+	<li>
+		<p class="zhi_name"></p>
+		<p class="zhi_price"></p>
+		<p class="clear_fl zhi_info">
+			<span class="lf"></span>
+			<span class="rt"></span>
+		</p>
+	</li>
+
+
+	<li>
+		<p class="zhi_name"></p>
+		<p class="zhi_price"></p>
+		<p class="clear_fl zhi_info">
+			<span class="lf"></span>
+			<span class="rt"></span>
+		</p>
+	</li>
+</ul>
+
+
+<div class="market_nav_con market_nav_con1">
+	
+   <div class="search_con">
+        <input styel="-webkit-user-select:auto" id="searchInput" placeholder="请输入股票代码/名称"/>
+    </div>
+    <div class="search_content_box">
+        <div class="search_historycmq">
+          
+            <ul class="search_h_list">
+                <!-- <li>
+                    <a  class="flex_nowrap" href="hangqing.html?code=600179">
+                        <span>招商银行 600179</span>
+                        <span class="red">28.17</span>
+                        <span class="red">+8.17%</span>
+                        <span class="add_h_btn"><img src="/resource/home/img/add_btn.png"></span>
+                        <span class="remove_btn"><img class="rt" src="/resource/home/img/remove_btn.png"></span>
+                    </a> -->
+               
+            </ul>
+        </div>
+        
+
+
+
+	<div style="display: none;" class="zhi_section liangbi">
+		<p class="zhi_s_title">
+			<!--<img src="/resource/home/img/down.png">-->
+			量比榜
+		</p>
+		<ul class="zhi_s_list liangbi_list">
+			<!-- <li>
+				<a class="flex_nowrap" href="">
+					<div class="zhi_l_name">
+						<p>中小扳指</p>
+						<p>568552</p>
+					</div>
+					<div>6445.26</div>
+					<div>3.36%</div>
+				</a>
+			</li> -->
+		</ul>
+	</div>
+</div>
+
+<div style="display: none;" class="market_nav_con market_nav_con2">
+	<div class="zhi_section">
+		<p class="zhi_s_title">
+			<!--<img src="/resource/home/img/down.png">-->
+			领涨概念
+		</p>
+		<ul class="banzhi_list clear_fl gainian_list">
+			<!-- <li>
+				<p class="banzhi_name">网络游戏</p>
+				<p class="banzhi_per">6.59%</p>
+			</li> -->
+		</ul>
+	</div>
+	<div class="zhi_section">
+		<p class="zhi_s_title">
+			<!--<img src="/resource/home/img/down.png">-->
+			领涨行业
+		</p>
+		<ul class="banzhi_list clear_fl hangye_list">
+			<!-- <li>
+				<p class="banzhi_name">网络游戏</p>
+				<p class="banzhi_per">6.59%</p>
+			</li> -->
+		</ul>
+	</div>
+	<!-- <div class="zhi_section">
+        <p class="zhi_s_title">
+            <img src="/resource/home/img/down.png">
+            领涨地区
+        </p>
+        <ul class="banzhi_list clear_fl diqu_list">
+            <li>
+                <p class="banzhi_name">网络游戏</p>
+                <p class="banzhi_per">6.59%</p>
+            </li>
+        </ul>
+    </div> -->
+</div>
+
+<div style="display: none;" class="market_nav_con market_nav_con3">
+	<div class="zhi_section zhangfubang">
+		<p class="zhi_s_title">
+			<!--<img src="/resource/home/img/down.png">-->
+			涨幅榜
+		</p>
+		<ul class="zhi_s_list zhangfubang_list1">
+			<!-- <li>
+				<a class="flex_nowrap" href="">
+					<div class="zhi_l_name">
+						<p>中小扳指</p>
+						<p>568552</p>
+					</div>
+					<div>6445.26</div>
+					<div>3.36%</div>
+				</a>
+			</li> -->
+		</ul>
+	</div>
+
+
+	<div class="zhi_section huanshoulv">
+		<p class="zhi_s_title">
+			<!--<img src="/resource/home/img/down.png">-->
+			换手率榜
+		</p>
+		<ul class="zhi_s_list huanshoulv_list1">
+			<!-- <li>
+				<a class="flex_nowrap" href="">
+					<div class="zhi_l_name">
+						<p>中小扳指</p>
+						<p>568552</p>
+					</div>
+					<div>6445.26</div>
+					<div>3.36%</div>
+				</a>
+			</li> -->
+		</ul>
+	</div>
+
+
+	<div class="zhi_section liangbi">
+		<p class="zhi_s_title">
+			<!--<img src="/resource/home/img/down.png">-->
+			量比榜
+		</p>
+		<ul class="zhi_s_list liangbi_list1">
+			<!-- <li>
+				<a class="flex_nowrap" href="">
+					<div class="zhi_l_name">
+						<p>中小扳指</p>
+						<p>568552</p>
+					</div>
+					<div>6445.26</div>
+					<div>3.36%</div>
+				</a>
+			</li> -->
+		</ul>
+	</div>
+</div>
+</div>
+
+
+
+
+
+</body>
+</html>
+<script src="/static/js/jquery-2.2.0.min.js"></script>
+<script src="/static/js/mui.min.js"></script>
+<script type="text/javascript" src="/static/js/stock.js"></script>
+    <script type="text/javascript" src="/static/js/common.js"></script>
+<script type="text/javascript">
+    mui.init({
+        swipeBack: true //启用右滑关闭功能
+    })
+
+    //选项卡
+    mui('body').on('tap', 'a', function() {
+        var data_href = this.getAttribute("data-href");
+        var href = this.getAttribute("href");
+        var url=data_href;
+        if(!url||url==''){
+            url=href;
+        }
+        window.location.href = url;
+    });
+
+
+
+    $(".market_nav").on("click", "span", function(){
+        $(this).addClass("active").siblings(".active").removeClass("active");
+        var url = $(this).data("url");
+        $(".market_nav_con").hide();
+        $("." + url).show();
+    });
+
+    // 三大板块
+    function dealData( _data ){
+        var data = _data.split("~");
+        var result = {};
+        result.plate_name = data[1];
+        result.last_px = data[3];
+        result.px_change = data[4];
+        result.px_change_rate = data[5];
+        return result;
+    }
+    setInterval(loadZhiPrice, 3000);
+    loadZhiPrice();
+    function loadZhiPrice(){
+        $.ajax({
+            url:"https://qt.gtimg.cn/q=s_sh000001,s_sz399001,s_sz399006",
+            dataType: "script",
+            cache: "false",
+            type: "GET",
+            success: function(){
+                var _data = [];
+                _data.push( dealData(v_s_sh000001 ));
+                _data.push( dealData(v_s_sz399001 ));
+                _data.push( dealData(v_s_sz399006 ));
+
+                var html = "";
+                for( var key in _data ){
+                    var color = "";
+                    var sign = "";
+                    if(_data[key].px_change >= 0){
+                        color = "#f60201";
+                        sign = "+"
+                    }else{
+                        color = "#30ae0f";
+                        sign = "-"
+                    }
+
+
+                    html += '<li>\
+			    		<p class="zhi_name">'+ _data[key].plate_name +'</p>\
+			    		<p class="zhi_price" style="color: '+ color +'">'+ (_data[key].last_px * 10 / 10).toFixed(2) +'</p>\
+			    		<p class="clear_fl zhi_info" style="color: '+ color +'">\
+			    			<span class="lf">' + sign + parseFloat( _data[key].px_change ).toFixed(2) +'</span>\
+			    			<span class="rt">' + sign + parseFloat( _data[key].px_change_rate).toFixed(2) +'%</span>\
+			    		</p>\
+			    	</li>';
+                }
+                $(".zhishu_list").html( html );
+            }
+        });
+    }
+
+   
+    
+    // 跌幅榜
+              /*  var listData = hq_json_new_all_changepercent_down.results;
+                var html = "";
+                for( var key in  listData){
+                    var code = listData[key][0].slice(2);
+                    html += '<li> \
+	    			<a class="flex_nowrap" href="/stock/home.html?code='+ code +'">\
+	    				<div class="zhi_l_name">\
+		    				<p>' + listData[key][1] + '</p>\
+		    				<p>' + listData[key][0] + '</p>\
+		    			</div>\
+		    			<div class="green">' + listData[key][2] + '</div>\
+		    			<div class="green">' + listData[key][3] + '%</div>\
+	    			</a>\
+	    		</li>';
+                }
+                $(".diefubang_list").html( html );
+  
+           
+                // 换手率榜
+                var listData = hq_json_new_all_turnoverrate;
+                var html = "";
+                for( var key in  listData){
+                    var code = listData[key][0].slice(2);
+                    html += '<li> \
+	    			<a class="flex_nowrap" href="/stock/home.html?code='+ code +'">\
+	    				<div class="zhi_l_name">\
+		    				<p>' + listData[key][1] + '</p>\
+		    				<p>' + listData[key][0] + '</p>\
+		    			</div>\
+		    			<div>' + listData[key][2] + '</div>\
+		    			<div>' + listData[key][3] + '%</div>\
+	    			</a>\
+	    		</li>';
+                }
+                $(".huanshoulv_list").html( html );
+
+
+                // 量比榜
+                var _listData = hq_json_sinaindustry_up;
+                var listData = [];
+                for( var key in _listData ){
+                    listData.push( _listData[key].split(",") );
+                }
+                var html = "";
+                for( var key in  listData){
+                    html += '<li> \
+	    			<a class="flex_nowrap" href="">\
+	    				<div class="zhi_l_name">\
+		    				<p>' + listData[key][12] + '</p>\
+		    				<p>' + listData[key][8] + '</p>\
+		    			</div>\
+		    			<div>' + listData[key][10] + '</div>\
+		    			<div>' + listData[key][9] + '</div>\
+	    			</a>\
+	    		</li>';
+                }
+                $(".liangbi_list").html( html );
+
+                // 领涨概念
+                var listData = hq_json_si_api4;
+                var html = '';
+                for( var i=0;i<=7;i++ ){
+                    html += '<li>\
+	    			<p class="banzhi_name">' + listData[i].name + '</p>\
+	    			<p class="banzhi_per">' + (listData[i].avg_changeratio * 100).toFixed(2) + '%</p>\
+	    		</li>';
+                }
+                $(".gainian_list").html( html );
+                // 领涨行业
+                var _listData = hq_json_sinaindustry_up;
+                var html = '';
+                var listData = [];
+                for( var key in _listData ){
+                    listData.push( _listData[key].split(",") );
+                }
+                for( var i=0;i<=7;i++ ){
+                    html += '<li>\
+	    			<p class="banzhi_name">' + listData[i][1] + '</p>\
+	    			<p class="banzhi_per">' + (listData[i][5] - 0).toFixed(2) + '%</p>\
+	    		</li>';
+                }
+                $(".hangye_list").html( html );
+            }*/
+    
+    // 沪深指数
+    // setInterval(loadArea, 3000);
+    // 	loadArea();
+    // function loadArea(){
+    // 	$.ajax({
+    //         url:"http://money.finance.sina.com.cn/q/view/newFLJK.php?param=area",
+    //         dataType: "script",
+    //         cache: "false",
+    //         type: "GET",
+    //         success: function(){
+    //         	// 领涨概念
+    //         	var listData = S_Finance_bankuai_area;
+    //         	console.log( S_Finance_bankuai_area );
+    //         	var html = '';
+    //         	var html1 = '';
+    //         	for( var i=0;i<=7;i++ ){
+    //         		html += '<li>\
+    //     			<p class="banzhi_name">' + listData[i].ts_name + '</p>\
+    //     			<p class="banzhi_per">' + (listData[i].avg_changeratio * 100).toFixed(2) + '%</p>\
+    //     		</li>';
+    //         	}
+    //         	$(".gainian_list").html( html );
+    //         	$(".hangye_list").html( html );
+    //         }
+    //     });
+    // }
+
+    // 创业板
+    setInterval(loadChuangye, 3000);
+    loadChuangye();
+    function loadChuangye(){
+    	if( !$(".market_nav .active").hasClass("tab1") ){
+    		return false;
+    	}
+        var _url = '/strategy/growth.html';
+        $ajaxCustom(_url, {}, function(res){
+            // 跌幅榜
+            var listData = res.zf;
+            var html = "";
+            for( var key in  listData){
+                html += '<li> \
+    			<a class="flex_nowrap" href="/stock/home.html?code='+ listData[key].SYMBOL +'">\
+    				<div class="zhi_l_name">\
+	    				<p>' + listData[key].NAME + '</p>\
+	    				<p>' + listData[key].SYMBOL + '</p>\
+	    			</div>\
+	    			<div>' + listData[key].PRICE + '</div>\
+	    			<div>' + (listData[key].PERCENT * 100).toFixed(2) + '%</div>\
+    			</a>\
+    		</li>';
+            }
+            $(".zhangfubang_list1").html( html );
+
+            // 换手率
+            var listData = res.hsl;
+            var html = "";
+            for( var key in  listData){
+                html += '<li> \
+    			<a class="flex_nowrap" href="/stock/home.html?code='+ listData[key].SYMBOL +'">\
+    				<div class="zhi_l_name">\
+	    				<p>' + listData[key].NAME + '</p>\
+	    				<p>' + listData[key].SYMBOL + '</p>\
+	    			</div>\
+	    			<div>' + listData[key].PRICE + '</div>\
+	    			<div>' + (listData[key].HS * 100).toFixed(2) + '%</div>\
+    			</a>\
+    		</li>';
+            }
+            $(".huanshoulv_list1").html( html );
+
+            // 量比
+            var listData = res.lb;
+            var html = "";
+            for( var key in  listData){
+                html += '<li> \
+    			<a class="flex_nowrap" href="/stock/home.html?code='+ listData[key].SYMBOL +'">\
+    				<div class="zhi_l_name">\
+	    				<p>' + listData[key].NAME + '</p>\
+	    				<p>' + listData[key].SYMBOL + '</p>\
+	    			</div>\
+	    			<div>' + listData[key].PRICE + '</div>\
+	    			<div>' + (listData[key].LB * 100).toFixed(2) + '%</div>\
+    			</a>\
+    		</li>';
+            }
+            $(".liangbi_list1").html( html );
+
+        });
+    }
+
+        var refreshTimer = null; //刷新搜索结果
+        var refreshTimer1 = null; //刷新搜索历史
+        mui.init({
+            swipeBack: true //启用右滑关闭功能
+        })
+        //选项卡
+         mui('body').on('tap', 'a', function() {
+            var data_href = this.getAttribute("data-href");
+            var href = this.getAttribute("href");
+            var url=data_href;
+            if(!url||url==''){
+                url=href;
+            }
+            window.location.href = url;
+         });
+
+
+
+         $("#searchInput").keyup(function(){
+            var val = $(this).val();
+            if(val=='')
+            {
+                window.location.href='dynamics.html';
+            }
+            else{
+                 displayItems(val);
+            }
+           
+        });
+        var searchCon = "";
+        function displayItems(items) {
+            var code = new Array();
+            var html = "";
+            if (items==''){ //搜索结果为空， 置空列表
+                html=searchCon;
+                $(".search_content_box").html( html );
+                if(refreshTimer){
+                    clearInterval(refreshTimer);
+                    refreshTimer = null;
+                }
+                refreshTimer1 = setInterval(refreshPrice1,3000);
+            }else{
+                var j = 0;
+                for (var i = 0; i < stocks.length; i++) {
+                    var reg = new RegExp('^' + items + '.*$', 'im');
+                    if (reg.test(stocks[i][0]) || reg.test(stocks[i][1]) || reg.test(stocks[i][2]) || reg.test(stocks[i][3])) {
+                        if(j < 15){
+                            code.push( stocks[i][3] );
+                            j++;
+                        }else{
+                            break;
+                        }
+                    }
+                }
+
+                if(code.length == 0){
+                    var html = '<ul><li class="no_more"></li><li style="text-align:center;font-size:12px;color:#999;background:transparent;border:none;">暂无搜索结果</li></ul>';
+                    $(".search_content_box").html( html );
+                }
+
+                if(refreshTimer1){
+                    clearInterval(refreshTimer1);
+                    refreshTimer1 = null;
+                }
+
+
+                code = code.join(",");
+                var _url = "/stock/simple.html",
+                    _oData = {code: code};
+                    sinaAjax(code, function(res){ 
+                        if(res.state){ // 登录成功
+                            for( var key in res.data ){
+                                var rate = parseFloat(res.data[key].px_change_rate);
+                                var className = "";
+                                if(rate >= 0){
+                                    className = "red"
+                                }else{
+                                    className = "green"
+                                }
+                                html += '<li class="list_header flex_nowrap">\
+                                    <div style="width: 15%; display: none;" class="mui-input-row mui-checkbox mui-left select_btn">\
+                                        <label></label>\
+                                        <input name="checkbox" value="Item 1" type="checkbox">\
+                                    </div>\
+                                    <a style="width:80%" class="flex_nowrap" href="/stock/home.html?code='+ res.data[key].code +'&pageType=celue">\
+                                        <span class="zi_name" style="width:80%;padding-left: 18px;"> <span>'+ res.data[key].prod_name +'</span><span data-code="'+ res.data[key].fullCode +'" data-fullcode="'+ res.data[key].full_code +'">' + res.data[key].code + '</span></span>\
+                                        <span style="width:40%" class="' + className + '">' + res.data[key].last_px + '</span>\
+                                        <span style="width:40%" class="' + className + '">' + res.data[key].px_change_rate + '%</span>\
+                                        \
+                                    </a>\
+                                    <span style="width:20%">\
+                                        <span href="" class="mui-btn mui-btn-success mui-btn-outlined">立即买入</span>\
+                                    </span>\
+                                </li>';
+                            }
+
+                            $(".search_content_box").html( "<ul class='zixuan_list'></ul>" );
+                            $(".zixuan_list").html(html);
+                            refreshTimer = setInterval(refreshPrice,3000);
+                        }else{
+                            // $alert(res.info);
+                        }
+                });
+            }
+        }
+
+</script>
+<script type="text/javascript">
+    // 沪深指数
+    // setInterval(loadArea, 3000);
+    // 	loadArea();
+    // function loadArea(){
+    // 	$.ajax({
+    //         url:"http://money.finance.sina.com.cn/q/view/newFLJK.php?param=area",
+    //         dataType: "script",
+    //         cache: "false",
+    //         type: "GET",
+    //         success: function(){
+    //         	// 领涨概念
+    //         	var listData = S_Finance_bankuai_area;
+    //         	console.log( S_Finance_bankuai_area );
+    //         	var html = '';
+    //         	var html1 = '';
+    //         	for( var i=0;i<=7;i++ ){
+    //         		html += '<li>\
+    //     			<p class="banzhi_name">' + listData[i].ts_name + '</p>\
+    //     			<p class="banzhi_per">' + (listData[i].avg_changeratio * 100).toFixed(2) + '%</p>\
+    //     		</li>';
+    //         	}
+    //         	$(".gainian_list").html( html );
+    //         	$(".hangye_list").html( html );
+    //         }
+    //     });
+    // }
+</script>

@@ -62,5 +62,7 @@ export default {
 		'/pages/mine/info/edit',
 		'/pages/mine/pwd/index',
 		'/pages/mine/info/index',
+		'/pages/biz/custom/index',
+		'pages/home/index.html'
 	]
 }
