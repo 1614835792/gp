@@ -7,7 +7,9 @@ export default {
 	SERVER_TYPE: 'SNOWY',
 
 	// 接口地址，也就是后端地址
-	BASE_URL: 'http://localhost:82/app',
+	 BASE_URL: 'http://localhost:82/app',
+	 
+  //  BASE_URL: 'http://ngg59g.natappfree.cc/app',
 
 	// 后端配置文件的 snowy.config.common.front-url，相当于前端地址（开源版本非必要）
 	TENANT_DOMAIN: "http://localhost:81",
@@ -63,6 +65,8 @@ export default {
 		'/pages/mine/pwd/index',
 		'/pages/mine/info/index',
 		'/pages/biz/custom/index',
+		'/pages/biz/business/index',
+		'/pages/biz/holding/index',
 		'pages/home/index.html'
 	]
 }

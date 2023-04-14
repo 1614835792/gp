@@ -115,10 +115,22 @@
           "text": "首页"
         },
         {
-          "pagePath": "pages/work/index",
-          "iconPath": "/static/images/tabbar/work.png",
+          "pagePath": "pages/biz/custom/index",
+          "iconPath": "/static/images/tabbar/hangqingEmpty.png",
+          "selectedIconPath": "/static/images/tabbar/hangqingPre.png",
+          "text": "自选"
+        },
+        {
+          "pagePath": "pages/biz/custom/index",
+          "iconPath": "/static/images/tabbar/zixuanEmpty2.png",
           "selectedIconPath": "/static/images/tabbar/work_.png",
-          "text": "工作台"
+          "text": "交易"
+        },
+        {
+          "pagePath": "pages/work/index",
+          "iconPath": "/static/images/tabbar/celueEmpty.png",
+          "selectedIconPath": "/static/images/tabbar/work_.png",
+          "text": "持仓"
         },
         {
           "pagePath": "pages/mine/index",
