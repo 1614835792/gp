@@ -54,44 +54,6 @@
 				"navigationStyle": "custom"
 				//#endif
 			}
-		},
-		{
-			"path": "pages/mine/info/index",
-			"style": {
-				"navigationBarTitleText": "个人信息",
-				"enablePullDownRefresh": false,
-				//#ifdef H5
-				"navigationStyle": "custom"
-				//#endif
-			}
-		},
-		{
-			"path": "pages/mine/info/edit",
-			"style": {
-				"navigationBarTitleText": "编辑资料",
-				//#ifdef H5
-				"navigationStyle": "custom"
-				//#endif
-			}
-		},
-		{
-			"path": "pages/mine/pwd/index",
-			"style": {
-				"navigationBarTitleText": "修改密码",
-				//#ifdef H5
-				"navigationStyle": "custom"
-				//#endif
-			}
-		},
-		{
-			"path": "pages/mine/setting/index",
-			"style": {
-				"navigationBarTitleText": "应用设置",
-				"enablePullDownRefresh": false,
-				//#ifdef H5
-				"navigationStyle": "custom"
-				//#endif
-			}
 		}
     ],
 	"tabBar": {
