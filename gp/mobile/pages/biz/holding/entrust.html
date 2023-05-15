@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>
+交易持仓-交易委托
+</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <link href="/static/css/mui.min.css" rel="stylesheet">
+    <link href="/static/css/person.css?v=123456789" rel="stylesheet">
+    
+<style type="text/css">
+    .postion_tab li.active>p a {
+        border-bottom: 2px solid #fc5055;
+        display: inline-block;
+        color: #fc5055;
+    }
+    .postion_tab li>p a{
+        color: #8f8f94;
+        font-size: 13px;
+    }
+    .postion_tab_con{
+        display: block!important;
+    }
+    .dropload_container{
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 34px;
+        background: #fff;
+        margin-bottom: 58px;
+    }
+    .postion_tab_con {
+        position: relative;
+        width: 100%;
+        left: 0;
+        top: 0;
+        background: #fff;
+        margin-bottom: 0px;
+    }
+    .dropload-noData,.dropload-refresh,.dropload-load{
+        color: #999;
+    }
+    .layui-layer .layui-layer-btn .layui-layer-btn0 {
+        padding: 0 15px;
+        border-color: #F54B4B;
+        background: #F54B4B;
+    }
+    .postion_tab_con li h1>span {
+        width: calc(100% / 2);
+    }
+</style>
+<link rel="stylesheet" type="text/css" href="/static/css/dropload.css">
+
+</head>
+
+<body class="quick_body payment_body mui-ios mui-ios-10 mui-ios-10-3">
+
+    
+    <header class="strategy_top">
+        <p>
+            <a href="../business/buy.html?code = 000001">立即买入</a>
+           
+            <a href="javascript:viod(0);" class="active">交易持仓</a>
+        </p>
+    </header>
+
+    <ul class="position_section clear_fl">
+        <li>
+            <p>净资产</p>
+            <p>￥109,807.00</p>
+        </li>
+        <li>
+            <p>可用资金</p>
+            <p>￥29,403.00</p>
+        </li>
+        <li>
+            <p>持仓市值</p>
+            <p>￥257,292.00</p>
+        </li>
+        <li>
+            <p>浮动盈亏</p>
+            <p>58,404.00</p>
+        </li>
+    </ul>
+    <ul class="postion_tab flex_nowrap">
+        <li>
+            <p><a href="index.html">交易持仓</a></p>
+        </li>
+        <li class="active" data-total-page="1" data-current-page="1">
+            <p><a href="javascript:void(0);">交易委托</a></p>
+        </li>
+        <li>
+            <p><a href="history.html">历史交易</a></p>
+        </li>
+        <div class="dropload_container">
+            <ul class="postion_tab_con">
+            </ul>
+        </div>
+    </ul>
+
+    
+ <nav class="ml_tab mui-bar mui-bar-tab">
+          <a class="mui-tab-item" href="/pages/home/index.html">
+              <span class="mui-icon mui-icon-home"></span>
+              <span class="mui-tab-label">首页</span>
+          </a>
+          <a class="mui-tab-item center_item" href="/pages/biz/custom/dynamics.html">
+              <span class="mui-icon mui-icon-celue"></span>
+              <span class="mui-tab-label">自选</span>
+          </a>
+      	<a class="mui-tab-item" href="/pages/biz/business/buy.html?code=000001">
+    			<span class="mui-icon mui-icon-zixuan"></span>
+    			<span class="mui-tab-label">交易</span>
+    		</a>
+    		<a class="mui-tab-item" href="/pages/biz/holding/index.html">
+    			<span class="mui-icon mui-icon-jingu"></span>
+    			<span class="mui-tab-label">持仓</span>
+    		</a>
+          <a class="mui-tab-item" href="/pages/mine/home.html">
+              <span class="mui-icon mui-icon-my"></span>
+              <span class="mui-tab-label">我的</span>
+          </a>
+      </nav>
+
+</body>
+</html>
+<script src="/static/js/jquery-2.2.0.min.js"></script>
+<script src="/static/js/mui.min.js"></script>
+<script type="text/javascript" src="/static/js/common.js?time=123456789"></script>
+
+<script type="text/javascript" src="/static/js/common.js"></script>
+<script type="text/javascript" src="/static/js/dropload.min.js"></script>
+<script type="text/javascript" src="/static/js/layer.js"></script>
+<script type="text/javascript">
+    mui.init({
+        swipeBack: true //启用右滑关闭功能
+    })
+    //选项卡
+     mui('body').on('tap', 'nav a', function() {
+        var data_href = this.getAttribute("data-href");
+        var href = this.getAttribute("href");
+        var url=data_href;
+        if(!url||url==''){
+            url=href;
+        }
+        window.location.href = url;
+     });
+
+
+     mui('body').on('tap', '.strategy_top a', function() {
+        var data_href = this.getAttribute("data-href");
+        var href = this.getAttribute("href");
+        var url=data_href;
+        if(!url||url==''){
+            url=href;
+        }
+        window.location.href = url;
+     });
+
+
+     mui('body').on('tap', '.postion_tab a', function() {
+        var data_href = this.getAttribute("data-href");
+        var href = this.getAttribute("href");
+        var url=data_href;
+        if(!url||url==''){
+            url=href;
+        }
+        window.location.href = url;
+     });
+
+
+     //撤销委托
+     $("body").on("tap", ".sell_position_btn", function(){
+        var id = $(this).data("id");
+        var _url = 'cancel.html',
+            _oData = {id: id};
+        var that = this;
+
+        layer.open({
+            title : '',
+            closeBtn : 0,
+            content: "确认撤销？"
+            ,btn: ['同意', '拒绝']
+            ,yes: function(index, layero){
+                $ajaxCustom(_url, _oData, function(res){
+                    if(res.state){ 
+                $(this).remove();
+                        context.remove();
+                        layer.close(index);
+                    }else{
+                        $alert(res.info);
+                        layer.close(index);
+                    }
+                });
+            }
+            ,cancel: function(){
+            }
+        });
+        // $ajaxCustom(_url, _oData, function(res){
+        //     if(res.state){
+        //         $(this).remove();
+        //     }else{
+        //         $alert(res.info);
+        //     }
+        // });
+     });
+
+
+      //分页
+    var size = 5;
+    var now = 1;
+    var total = 1;
+
+    function initData(me){
+        var id = $(".recharge_mask").attr("data-id");
+        var _url = "entrust.html",
+            _oData = {page: now};
+        $ajaxCustom(_url, _oData, function(res){
+          if(res.state == 1){ // 成功
+            now ++;
+            total = res.data.total_page;
+            var data = res.data;
+            var html = "";
+            for(var key in data.orders){
+                var fangxiang = "未知";
+                var className = "";
+                if( data.orders[key].state == 1){
+                    fangxiang = "委托建仓";
+                    className = "red";
+
+                    html += '<li class="entrust' + data.orders[key].order_id + '">\
+                    <h1 class="clear_fl">\
+                        <span class="lf">' + data.orders[key].name + ' '+ data.orders[key].code +'</span>\
+                        <span class="rt"> <span class="p_key"></span>'+ data.orders[key].create_at_text +'</span>\
+                    </h1>\
+                    <div class="clear_fl p_info">\
+                        <p>\
+                            <span class="p_key">委托价</span>\
+                            <span class="p_value">'+ data.orders[key].price +'</span>\
+                        </p>\
+                                                <p>\
+                            <span class="p_key">数量</span>\
+                            <span class="p_value">'+ data.orders[key].hand +'</span>\
+                        </p>\
+                                                <p>\
+                            <span class="p_key">保证金</span>\
+                            <span class="p_value">'+ data.orders[key].deposit +'</span>\
+                        </p>\
+                        <p>\
+                            <span class="p_key">止损</span>\
+                            <span class="p_value">'+ data.orders[key].stop_loss_price +'</span>\
+                        </p>\
+                        <p>\
+                            <span class="p_key">止盈</span>\
+                            <span class="p_value">'+ data.orders[key].stop_profit_price +'</span>\
+                        </p>\
+                        <p>\
+                            <span class="p_key">交易模式</span>\
+                            <span class="p_value">'+ data.orders[key].mode_name +'</span>\
+                        </p>\
+                        <p>\
+                            <span class="p_key">类型</span>\
+                            <span class="p_value ' + className + '">' + fangxiang + '</span>\
+                        </p>\
+                        <p>\
+                        <span class="p_key">状态</span>\
+                        <span class="p_value ' + className + '">' + '委托中' + '</span>\
+                    </p>\
+                    </div>\
+                </li>';
+                }else if( data.orders[key].state == 4 ){
+                    fangxiang = "委托平仓";
+                    className = "green";
+
+                    html += '<li class="entrust' + data.orders[key].order_id + '">\
+                    <h1 class="clear_fl">\
+                        <span class="lf">' + data.orders[key].name + ' '+ data.orders[key].code +'</span>\
+                        <span class="rt"> <span class="p_key"></span>'+ data.orders[key].create_at_text +'</span>\
+                    </h1>\
+                    <div class="clear_fl p_info">\
+                        <p>\
+                            <span class="p_key">买入价</span>\
+                            <span class="p_value">'+ data.orders[key].trade_price +'</span>\
+                        </p>\
+                        <p>\
+                            <span class="p_key">委托价</span>\
+                            <span class="p_value">'+ data.orders[key].sell_price +'</span>\
+                        </p>\
+                        <p>\
+                            <span class="p_key">市值</span>\
+                            <span class="p_value">'+ data.orders[key].market_value +'</span>\
+                        </p>\
+                        <p>\
+                            <span class="p_key">收益率</span>\
+                            <span class="p_value ' + className + '">'+ data.orders[key].yield_rate +'</span>\
+                        </p>\
+                                                <p>\
+                            <span class="p_key">数量</span>\
+                            <span class="p_value">'+ data.orders[key].sell_hand +'</span>\
+                        </p>\
+                                                <p>\
+                            <span class="p_key">保证金</span>\
+                            <span class="p_value">'+ data.orders[key].deposit +'</span>\
+                        </p>\
+                        <p>\
+                            <span class="p_key">止损</span>\
+                            <span class="p_value">'+ data.orders[key].stop_loss_price +'</span>\
+                        </p>\
+                        <p>\
+                            <span class="p_key">止盈</span>\
+                            <span class="p_value">'+ data.orders[key].stop_profit_price +'</span>\
+                        </p>\
+                        <p>\
+                            <span class="p_key">交易模式</span>\
+                            <span class="p_value">'+ data.orders[key].mode_name +'</span>\
+                        </p>\
+                        <p>\
+                            <span class="p_key">类型</span>\
+                            <span class="p_value ' + className + '">' + fangxiang + '</span>\
+                        </p>\
+                    </div>\
+                    <!-- <div class="clear_fl p_control_panel">\
+                        <p class="rt">\
+                            <span class="sell_position_btn lf" data-id="' + className + '">'+ data.orders[key].order_id +'">撤销</span>\
+                        </p>\
+                    </div> -->\
+                </li>';
+                }else if( data.orders[key].state == 6 ){
+                    var forceType = data.orders[key].force_type;
+                    var typeText = "";
+                    if( forceType == 1 ){
+                        typeText = "爆仓";
+                    }else if( forceType == 2 ){
+                        typeText = "止盈止损";
+                    }else if( forceType == 3 ){
+                        typeText = "非自动递延";
+                    }else if( forceType == 4 ){
+                        typeText = "余额不足";
+                    }
+
+                    fangxiang = "强制平仓";
+                    className = "green";
+
+                    html += '<li class="entrust' + data.orders[key].order_id + '">\
+                    <h1 class="clear_fl">\
+                        <span class="lf">' + data.orders[key].name + ' '+ data.orders[key].code +'</span>\
+                        <span class="rt"> <span class="p_key"></span>'+ data.orders[key].create_at_text +'</span>\
+                    </h1>\
+                    <div class="clear_fl p_info">\
+                        <p>\
+                            <span class="p_key">买入价</span>\
+                            <span class="p_value">'+ data.orders[key].trade_price +'</span>\
+                        </p>\
+                        <p>\
+                            <span class="p_key">委托价</span>\
+                            <span class="p_value">'+ data.orders[key].sell_price +'</span>\
+                        </p>\
+                        <p>\
+                            <span class="p_key">市值</span>\
+                            <span class="p_value">'+ data.orders[key].market_value +'</span>\
+                        </p>\
+                        <p>\
+                            <span class="p_key">收益率</span>\
+                            <span class="p_value ' + className + '">'+ data.orders[key].yield_rate +'</span>\
+                        </p>\
+                                                <p>\
+                            <span class="p_key">数量</span>\
+                            <span class="p_value">'+ data.orders[key].sell_hand +'</span>\
+                        </p>\
+                                                <p>\
+                            <span class="p_key">保证金</span>\
+                            <span class="p_value">'+ data.orders[key].deposit +'</span>\
+                        </p>\
+                        <p>\
+                            <span class="p_key">止损</span>\
+                            <span class="p_value">'+ data.orders[key].stop_loss_price +'</span>\
+                        </p>\
+                        <p>\
+                            <span class="p_key">止盈</span>\
+                            <span class="p_value">'+ data.orders[key].stop_profit_price +'</span>\
+                        </p>\
+                        <p>\
+                            <span class="p_key">交易模式</span>\
+                            <span class="p_value">'+ data.orders[key].classify_name +'</span>\
+                        </p>\
+                        <p>\
+                            <span class="p_key">交易周期</span>\
+                            <span class="p_value">'+ data.orders[key].mode_name +'</span>\
+                        </p>\
+                        <!--<p>\
+                            <span class="p_key">类型</span>\
+                            <span class="p_value ' + className + '">' + fangxiang + '</span>\
+                        </p> -->\
+                        <p>\
+                            <span class="p_key">类型</span>\
+                            <span class="p_value ' + className + '">' + typeText + '</span>\
+                        </p>\
+                    </div>\
+                    <!--  <div class="clear_fl p_control_panel">\
+                        <p class="rt">\
+                            <span class="sell_position_btn lf" data-id="' + className + '">'+ data.orders[key].order_id +'">撤销</span>\
+                        </p>\
+                    </div>  -->\
+                </li>';
+                }
+              
+                    
+                    
+                    
+            }
+            $(".postion_tab_con").append(html);
+            // hideLoading();
+          }else{
+            $alert(res.info);
+          }
+          me.resetload();
+        });
+    }
+
+    $(function(){
+        // dropload
+        $('.dropload_container').dropload({
+            scrollArea : window,
+            domDown : {
+                domClass   : 'dropload-down',
+                domRefresh : '<div class="dropload-refresh">↑上拉加载更多</div>',
+                domLoad    : '<div class="dropload-load"><span class="loading"></span>加载中...</div>',
+                domNoData  : '<div class="dropload-noData">暂无更多数据</div>'
+            },
+            loadDownFn : function(me){
+                if(total >= now){
+                    initData(me);
+                }else{
+                    // 锁定
+                    me.lock();
+                    // 无数据
+                    me.noData();
+                    me.resetload();
+                    return false;
+                }
+            },
+            threshold : 50
+        });
+    });
+
+
+
+    // 刷新
+
+    setInterval(refreshList, 4000);
+    function refreshList(){
+        var _url = "/order/ajax-entrust.html";
+        $ajaxCustom(_url, {}, function(res){
+            if(res.state == 1){
+                var orderList = res.data.ids;
+                $(".postion_tab_con li").hide();
+                for( key in orderList ){
+                    $(".entrust" + orderList[key]).show();
+                }
+            }else{
+                $alert(res.info);
+            }
+        });
+    }
+
+</script>

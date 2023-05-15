@@ -303,20 +303,20 @@ document.location.href = noddy.href;
 			创建策略
 						<a href="../holding/index.html" class="back_icon">
 							<!--<a href="javascript:history.go(-1)" class="back_icon">-->
-				<img src="/static/images/business/back_icon.png">
-			</a>
+				       <img src="/static/images/business/back_icon.png">
+			           </a>
 		</header>
 		
 		<div class="search_con" style="margin-top: 55px;">
         <input styel="-webkit-user-select:auto" id="searchInput" placeholder="请输入股票代码/名称">
-    </div>
+        </div>
     
     <div class="search_content_box" style="width: 90%;margin: 20% auto;border: 1px solid #b7aeae;position: absolute;left: 0;right: 0;background: white;z-index: 99;top: 30px;display:none;">
     
     </div>    
     
 		<section class="buy_section">
-			<a href="/stock/home.html?code=688148"  class="b_gupiao_detail clear_fl">
+			<span class="b_gupiao_detail clear_fl" onclick="getHomeHtml()">
 				<div class="lf b_gupiao_profile">
 					<p class="b_gupiao_name">芳源股份</p>
 					<p class="b_gupiao_code"  data-fullcode="sh688148">688148</p>
@@ -329,7 +329,7 @@ document.location.href = noddy.href;
 					</p>
 				</div>
 				<span class="rt">行情</span>
-			</a>
+			</span>
 			<div class="b_gupiao_detail clear_fl b_gupiao_intro" style="display:none;">
 				<div class="agent_price_title lf">策略委托价</div>
 				<div class="agent_price lf red">13.04</div>
@@ -614,7 +614,7 @@ document.location.href = noddy.href;
 </html>
 <script src="/static/js/jquery-2.2.0.min.js"></script>
 <script src="/static/js/mui.min.js"></script>
-<script type="text/javascript" src="/static/js/common.js"></script>
+<script type="text/javascript" src="/static/js/common.js?v=123456789"></script>
 
 <script type="text/javascript" src="/static/js/stock.js"></script>
 <script type="text/javascript" src="/static/js/layer.js"></script>
@@ -824,7 +824,6 @@ $(".jian").click(function(){
 		var usage = parseFloat( $(".balance_count").data("usage") ); //资金使用率
 		var count = Math.floor(creditNum * multiple * usage / $(".b_gupiao_now_price").html() /100 / 100) * 100; //股数
 		var ammount =  (count * $(".b_gupiao_now_price").html()).toFixed(2);
-	       console.log('123')
 		$(".baishu_detail .lf").html(count + "股").attr("data-count",count);
 		$(".baishu_detail .rt").html("市值" + ammount + "元").attr("data-ammount",ammount);
       $(".gushu").html(count+ "股");
@@ -981,7 +980,7 @@ $(".jiaoyiyongjin").html(parseFloat(deferCount)+parseFloat(jiangcang));
 		
 		}
 
-		var _url = "/stock/buy.html";
+		var _url = "buy.html";
 		flag = true;
         $ajaxCustom(_url, params, function(res){
             if(res.state){
@@ -1043,8 +1042,15 @@ if( !isTradingTime() ){
 
 
 $(function(){
-	var timer = setInterval(function(){
-		code = $(".b_gupiao_code").data("fullcode");
+	    code = getQueryVariable("code");
+	    if(code.length == 0 || code == ''){
+			return;
+		}
+		for (var i = 0; i < stocks.length; i++) {
+		    if (code == stocks[i][0] || code == stocks[i][1] || code == stocks[i][2] || code == stocks[i][3]) {
+		      code = stocks[i][3];
+		    }
+		}
         var _url = "/stock/simple.html",
             _oData = {code: code};
         sinaAjax(code, function(res){
@@ -1056,7 +1062,9 @@ $(function(){
                 	$(".agent_price").html(nowDate.sell_px);
                 	$(".px_change").html(nowDate.px_change);
                 	$(".px_change_rate").html(nowDate.px_change_rate + "%");
-
+					
+	                $(".b_gupiao_name").html(nowDate.prod_name);
+                	$(".b_gupiao_code").html(nowDate.code);
                 	calcNum();
 
                 	//如果用户在输入就不修改
@@ -1083,9 +1091,10 @@ $(function(){
                 // $alert(res.info);
             }
         });
-	},1000);
 });
-
+function getHomeHtml(){
+			window.location.href = "home.html?code="+getQueryVariable("code");
+		} 
 </script>
 <script>
          //$("#searchInput").click(function(){
@@ -1127,7 +1136,6 @@ $(function(){
         
          var searchCon = "";
         function displayItems(items) {
-            
             var code = new Array();
             
             var html = "";
@@ -1138,7 +1146,7 @@ $(function(){
                     clearInterval(refreshTimer);
                     refreshTimer = null;
                 }
-                refreshTimer1 = setInterval(refreshPrice1,3000);
+                refreshTimer1 = setInterval(refreshPrice1(),3000);
             }else{
                 var j = 0;
                 for (var i = 0; i < stocks.length; i++) {
@@ -1152,14 +1160,12 @@ $(function(){
                         }
                     }
                 }
-//console.log(code);
-console.log(code);
 //code=["sh600519", "sh600903", "sh603439", "sz000589", "sz002424"];
                 if(code.length == 0){
                     var html = '<ul><li class="no_more"></li><li style="text-align:center;font-size:12px;color:#999;background:transparent;border:none;">暂无搜索结果</li></ul>';
                     $(".search_content_box").html( html );
                 }
-
+                console.log("code:----",code)
                 if(refreshTimer1){
                     clearInterval(refreshTimer1);
                     refreshTimer1 = null;
@@ -1169,7 +1175,7 @@ console.log(code);
                 code = code.join(",");
                 var _url = "/stock/simple.html",
                     _oData = {code: code};
-                    sinaAjax(code, function(res){ 
+                    sinaAjax(code, function(res){
                         if(res.state){ // 登录成功
                             for( var key in res.data ){
                                 var rate = parseFloat(res.data[key].px_change_rate);
@@ -1184,21 +1190,21 @@ console.log(code);
                                         <label></label>\
                                         <input name="checkbox" value="Item 1" type="checkbox">\
                                     </div>\
-                                    <a style="width:80%" class="flex_nowrap" href="buy?code='+ res.data[key].code +'&pageType=celue">\
-                                        <span class="zi_name" style="width:80%;padding-left: 18px;"> <span>'+ res.data[key].prod_name +'</span><span data-code="'+ res.data[key].fullCode +'" data-fullcode="'+ res.data[key].full_code +'">' + res.data[key].code + '</span></span>\
+                                    <a style="width:80%" class="flex_nowrap" href="buy.html?code='+ res.data[key].code +'&pageType=celue">\
+                                        <span class="zi_name" style="width:80%;padding-left: 18px;"> <span>'+ res.data[key].prod_name +'</span><span data-code="'+ res.data[key].fullCode +'" data-fullcode="'+ res.data[key].fullCode +'">' + res.data[key].code + '</span></span>\
                                         <span style="width:40%" class="' + className + '">' + res.data[key].last_px + '</span>\
                                         <span style="width:40%" class="' + className + '">' + res.data[key].px_change_rate + '%</span>\
                                         \
                                     </a>\
                                     <span style="width:20%">\
-                                        <a href="buy?code='+ res.data[key].code +'" class="mui-btn mui-btn-success mui-btn-outlined">创建策略</a>\
+                                        <a href="buy.html?code='+ res.data[key].code +'" class="mui-btn mui-btn-success mui-btn-outlined">创建策略</a>\
                                     </span>\
                                 </li>';
                             }
-
+                            console.log("html:"+html)
                             $(".search_content_box").html( "<ul class='zixuan_list'></ul>" );
                             $(".zixuan_list").html(html);
-                            refreshTimer = setInterval(refreshPrice,3000);
+                            refreshTimer = setInterval(refreshPrice(),3000);
                         }else{
                             // $alert(res.info);
                         }

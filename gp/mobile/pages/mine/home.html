@@ -7,7 +7,7 @@
 </title>
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
     <link href="/static/css/mui.min.css" rel="stylesheet">
-    <link href="/static/css/person.css" rel="stylesheet">
+    <link href="/static/css/person.css?v=123456789" rel="stylesheet">
     
 
 
@@ -44,26 +44,26 @@
             <div class="commonFun">
                 <p>常用功能</p>
                 <ul>
-                                        <a href="/cattle/index.html" style="display:none;">
+                 <!--  <a href="/cattle/index.html" style="display:none;">
                         <li >
                             <img src="/static/images/mine/shouyi.png">
                             大神收益
                         </li>
-                        <!--<span class="rt">跟单：0笔 / 返佣：0元</span>-->
                     </a>
                                         <a href="/attention/index.html" >
                         <li >
                             <img src="/static/images/mine/guanzhu.png">
                             我关注的大神
                         </li>
-                    </a>
+                    </a> 
+					-->
                     <a href="/user/record.html" >
                         <li >
                             <img src="/static/images/mine/mingxi.png">
                             资金明细
                         </li>
                     </a>
-                    <a href="/order/index.html" >
+                    <a href="/holding/index.html" >
                         <li >
                             <img src="/static/images/mine/chicang.png">
                             我的持仓
@@ -178,7 +178,28 @@
             </ul>
         </div>
     </div>
-
+    <nav class="ml_tab mui-bar mui-bar-tab">
+          <a class="mui-tab-item" href="/pages/home/index.html">
+              <span class="mui-icon mui-icon-home"></span>
+              <span class="mui-tab-label">首页</span>
+          </a>
+          <a class="mui-tab-item center_item" href="/pages/biz/custom/dynamics.html">
+              <span class="mui-icon mui-icon-celue"></span>
+              <span class="mui-tab-label">自选</span>
+          </a>
+      	<a class="mui-tab-item" href="/pages/biz/business/buy.html?code=000001">
+    			<span class="mui-icon mui-icon-zixuan"></span>
+    			<span class="mui-tab-label">交易</span>
+    		</a>
+    		<a class="mui-tab-item" href="/pages/biz/holding/index.html">
+    			<span class="mui-icon mui-icon-jingu"></span>
+    			<span class="mui-tab-label">持仓</span>
+    		</a>
+          <a class="mui-tab-item" href="/pages/mine/home.html">
+              <span class="mui-icon mui-icon-my"></span>
+              <span class="mui-tab-label">我的</span>
+          </a>
+      </nav>
 </body>
 </html>
 <script src="/static/js/jquery-2.2.0.min.js"></script>

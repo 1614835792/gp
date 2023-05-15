@@ -121,13 +121,13 @@
           "text": "自选"
         },
         {
-          "pagePath": "pages/biz/custom/index",
+          "pagePath": "pages/biz/business/index",
           "iconPath": "/static/images/tabbar/zixuanEmpty2.png",
-          "selectedIconPath": "/static/images/tabbar/work_.png",
+          "selectedIconPath": "/static/images/tabbar/zixuanEmpty2.png",
           "text": "交易"
         },
         {
-          "pagePath": "pages/work/index",
+          "pagePath": "pages/biz/holding/index",
           "iconPath": "/static/images/tabbar/celueEmpty.png",
           "selectedIconPath": "/static/images/tabbar/work_.png",
           "text": "持仓"

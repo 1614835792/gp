@@ -11,86 +11,87 @@
 				"navigationStyle": "custom"
 				//#endif
 			}
-		},
-		{
-			"path": "pages/home/index",
-			"style": {
-				"navigationBarTitleText": "首页",
-				"navigationStyle": "custom"
-				
-			}
-		},
-		{
-			"path": "pages/biz/custom/index",
-			"style": {
-				"navigationBarTitleText": "自选",
-				"navigationStyle": "custom"
-				
-			}
-		},
-		{
-			"path": "pages/biz/business/index",
-			"style": {
-				"navigationBarTitleText": "交易",
-				//#ifdef H5
-				"navigationStyle": "custom"
-				//#endif
-			}
-		},
-		{
-			"path": "pages/biz/holding/index",
-			"style": {
-				"navigationBarTitleText": "持仓",
-				//#ifdef H5
-				"navigationStyle": "custom"
-				//#endif
-			}
-		},
-		{
-			"path": "pages/mine/index",
-			"style": {
-				"navigationBarTitleText": "我的",
-				//#ifdef H5
-				"navigationStyle": "custom"
-				//#endif
-			}
 		}
+		// {
+		// 	"path": "pages/home/index",
+		// 	"style": {
+		// 		"navigationBarTitleText": "首页",
+		// 		"navigationStyle": "custom"
+				
+		// 	}
+		// },
+		// {
+		// 	"path": "pages/biz/custom/index",
+		// 	"style": {
+		// 		"navigationBarTitleText": "自选",
+		// 		"navigationStyle": "custom"
+				
+		// 	}
+		// },
+		// {
+		// 	"path": "pages/biz/business/index",
+		// 	"style": {
+		// 		"navigationBarTitleText": "交易",
+		// 		//#ifdef H5
+		// 		"navigationStyle": "custom"
+		// 		//#endif
+		// 	}
+		// },
+		// {
+		// 	"path": "pages/biz/holding/index",
+		// 	"style": {
+		// 		"navigationBarTitleText": "持仓",
+		// 		//#ifdef H5
+		// 		"navigationStyle": "custom"
+		// 		//#endif
+		// 	}
+		// },
+		// {
+		// 	"path": "pages/mine/index",
+		// 	"style": {
+		// 		"navigationBarTitleText": "我的",
+		// 		//#ifdef H5
+		// 		"navigationStyle": "custom"
+		// 		//#endif
+		// 	}
+		// }
     ],
 	"tabBar": {
 		"color": "#000000",
 		"selectedColor": "#000000",
 		"borderStyle": "white",
 		"backgroundColor": "#ffffff",
-		"list": [{
-				"pagePath": "pages/home/index",
-				"iconPath": "static/images/tabbar/home.png",
-				"selectedIconPath": "static/images/tabbar/home_.png",
-				"text": "首页"
-			}, 
-			{
-				"pagePath": "pages/biz/custom/index",
-				"iconPath": "static/images/tabbar/hangqingEmpty.png",
-				"selectedIconPath": "static/images/tabbar/hangqingPre.png",
-				"text": "自选"
-			},
-			{
-				"pagePath": "pages/biz/business/index",
-				"iconPath": "static/images/tabbar/zixuanEmpty2.png",
-				"selectedIconPath": "static/images/tabbar/zixuanEmpty2.png",
-				"text": "交易"
-			},
-			{
-				"pagePath": "pages/biz/holding/index",
-				"iconPath": "static/images/tabbar/celueEmpty.png",
-				"selectedIconPath": "static/images/tabbar/work_.png",
-				"text": "持仓"
-			},
-			{
-				"pagePath": "pages/mine/index",
-				"iconPath": "static/images/tabbar/mine.png",
-				"selectedIconPath": "static/images/tabbar/mine_.png",
-				"text": "我的"
-			}
+		"list": [
+			// {
+			// 	"pagePath": "pages/home/index",
+			// 	"iconPath": "static/images/tabbar/home.png",
+			// 	"selectedIconPath": "static/images/tabbar/home_.png",
+			// 	"text": "首页"
+			// }, 
+			// {
+			// 	"pagePath": "pages/biz/custom/index",
+			// 	"iconPath": "static/images/tabbar/hangqingEmpty.png",
+			// 	"selectedIconPath": "static/images/tabbar/hangqingPre.png",
+			// 	"text": "自选"
+			// },
+			// {
+			// 	"pagePath": "pages/biz/business/index",
+			// 	"iconPath": "static/images/tabbar/zixuanEmpty2.png",
+			// 	"selectedIconPath": "static/images/tabbar/zixuanEmpty2.png",
+			// 	"text": "交易"
+			// },
+			// {
+			// 	"pagePath": "pages/biz/holding/index",
+			// 	"iconPath": "static/images/tabbar/celueEmpty.png",
+			// 	"selectedIconPath": "static/images/tabbar/work_.png",
+			// 	"text": "持仓"
+			// },
+			// {
+			// 	"pagePath": "pages/mine/index",
+			// 	"iconPath": "static/images/tabbar/mine.png",
+			// 	"selectedIconPath": "static/images/tabbar/mine_.png",
+			// 	"text": "我的"
+			// }
 		]
 	},
 	"globalStyle": {

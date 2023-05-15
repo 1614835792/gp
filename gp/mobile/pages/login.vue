@@ -100,7 +100,8 @@
 				 store.dispatch('GetUserInfo'),
 				// store.dispatch('GetDictTypeTreeData'),
 			]).then((result) => {
-				proxy.$tab.reLaunch('/pages/home/index')
+				//proxy.$tab.reLaunch('/pages/home/index.html')
+				window.location.href = "/pages/home/index.html"
 				proxy.$modal.closeLoading()
 			}).catch(err => {
 				console.error(err)

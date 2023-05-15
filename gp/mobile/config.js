@@ -67,6 +67,8 @@ export default {
 		'/pages/biz/custom/index',
 		'/pages/biz/business/index',
 		'/pages/biz/holding/index',
-		'pages/home/index.html'
+		'/pages/home/index.html',
+		'/pages/biz/business/buy.html'
+		
 	]
 }

@@ -7,7 +7,7 @@
 </title>
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
     <link href="/static/css/mui.min.css" rel="stylesheet">
-    <link href="/static/css/person.css" rel="stylesheet">
+    <link href="/static/css/person.css?v=123456789" rel="stylesheet">
     
 <style type="text/css">
     .postion_tab li.active>p a {
@@ -295,17 +295,38 @@
             <p><a href="javascript:void(0);">交易持仓</a></p>
         </li>
         <li>
-            <p><a href="/order/entrust.html">交易委托</a></p>
+            <p><a href="entrust.html">交易委托</a></p>
         </li>
         <li>
-            <p><a href="/order/history.html">历史交易</a></p>
+            <p><a href="history.html">历史交易</a></p>
         </li>
         <div class="dropload_container">
             <ul class="postion_tab_con">
             </ul>
         </div>
     </ul>
-
+      <nav class="ml_tab mui-bar mui-bar-tab">
+          <a class="mui-tab-item" href="/pages/home/index.html">
+              <span class="mui-icon mui-icon-home"></span>
+              <span class="mui-tab-label">首页</span>
+          </a>
+          <a class="mui-tab-item center_item" href="/pages/biz/custom/dynamics.html">
+              <span class="mui-icon mui-icon-celue"></span>
+              <span class="mui-tab-label">自选</span>
+          </a>
+      	<a class="mui-tab-item" href="/pages/biz/business/buy.html?code=000001">
+    			<span class="mui-icon mui-icon-zixuan"></span>
+    			<span class="mui-tab-label">交易</span>
+    		</a>
+    		<a class="mui-tab-item" href="/pages/biz/holding/index.html">
+    			<span class="mui-icon mui-icon-jingu"></span>
+    			<span class="mui-tab-label">持仓</span>
+    		</a>
+          <a class="mui-tab-item" href="/pages/mine/home.html">
+              <span class="mui-icon mui-icon-my"></span>
+              <span class="mui-tab-label">我的</span>
+          </a>
+      </nav>
 
 </body>
 </html>
@@ -789,7 +810,7 @@
 
     function initData(me){
         var id = $(".recharge_mask").attr("data-id");
-        var _url = "/order/index.html",
+        var _url = "/holding/index.html",
             _oData = {page: now};
         $ajaxCustom(_url, _oData, function(res){
           if(res.state == 1){ // 成功
