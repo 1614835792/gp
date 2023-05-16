@@ -1040,61 +1040,63 @@ if( !isTradingTime() ){
 }
 
 
-
+var finalFullCode;
 $(function(){
-	    code = getQueryVariable("code");
-	    if(code.length == 0 || code == ''){
-			return;
+	code = getQueryVariable("code");
+	if(code.length == 0 || code == ''){
+		return;
+	}
+	for (var i = 0; i < stocks.length; i++) {
+		if (code == stocks[i][0] || code == stocks[i][1] || code == stocks[i][2] || code == stocks[i][3]) {
+		  code = stocks[i][3];
 		}
-		for (var i = 0; i < stocks.length; i++) {
-		    if (code == stocks[i][0] || code == stocks[i][1] || code == stocks[i][2] || code == stocks[i][3]) {
-		      code = stocks[i][3];
-		    }
+	}
+	var _url = "/stock/simple.html",
+		_oData = {code: code};
+	sinaAjax(code, function(res){
+		if(res.state){ // 登录成功
+			for( var key in res.data ){
+				var nowDate = res.data[key];
+				finalFullCode = nowDate.fullCode
+				$(".b_gupiao_now_price").html(nowDate.last_px);
+				$(".b_gupiao_now_price2").html(nowDate.last_px);
+				$(".agent_price").html(nowDate.sell_px);
+				$(".px_change").html(nowDate.px_change);
+				$(".px_change_rate").html(nowDate.px_change_rate + "%");
+				
+				$(".b_gupiao_name").html(nowDate.prod_name);
+				$(".b_gupiao_code").html(nowDate.code);
+				calcNum();
+
+				//如果用户在输入就不修改
+				if( flag1 ){
+					return false;
+				}
+
+				//修改止盈止损
+				var agent_price = nowDate.sell_px;
+				var profit_rate = parseFloat( $(".zhangfu span").attr("data-val") );
+				var loss_rate = parseFloat( $(".diefu span").attr("data-val") );
+
+				profit_price = agent_price * (100 + profit_rate) / 100;
+				loss_price = agent_price * (100 - Math.abs(loss_rate)) / 100;
+
+				// console.log( profit_price.toFixed(2) );
+				// console.log( loss_price.toFixed(2) );
+
+
+				$(".profitCount").val( profit_price.toFixed(2) );
+				$(".lossCount").val( loss_price.toFixed(2) );
+			}
+		}else{
+			// $alert(res.info);
 		}
-        var _url = "/stock/simple.html",
-            _oData = {code: code};
-        sinaAjax(code, function(res){
-            if(res.state){ // 登录成功
-                for( var key in res.data ){
-                	var nowDate = res.data[key];
-                	$(".b_gupiao_now_price").html(nowDate.last_px);
-                	$(".b_gupiao_now_price2").html(nowDate.last_px);
-                	$(".agent_price").html(nowDate.sell_px);
-                	$(".px_change").html(nowDate.px_change);
-                	$(".px_change_rate").html(nowDate.px_change_rate + "%");
-					
-	                $(".b_gupiao_name").html(nowDate.prod_name);
-                	$(".b_gupiao_code").html(nowDate.code);
-                	calcNum();
-
-                	//如果用户在输入就不修改
-                	if( flag1 ){
-                		return false;
-                	}
-
-                	//修改止盈止损
-                	var agent_price = nowDate.sell_px;
-                	var profit_rate = parseFloat( $(".zhangfu span").attr("data-val") );
-                	var loss_rate = parseFloat( $(".diefu span").attr("data-val") );
-
-                	profit_price = agent_price * (100 + profit_rate) / 100;
-                	loss_price = agent_price * (100 - Math.abs(loss_rate)) / 100;
-
-                	// console.log( profit_price.toFixed(2) );
-                	// console.log( loss_price.toFixed(2) );
-
-
-                	$(".profitCount").val( profit_price.toFixed(2) );
-                	$(".lossCount").val( loss_price.toFixed(2) );
-                }
-            }else{
-                // $alert(res.info);
-            }
-        });
+	});
 });
 function getHomeHtml(){
-			window.location.href = "home.html?code="+getQueryVariable("code");
-		} 
+	var fullCode = $(".b_gupiao_code").data("fullcode");
+	window.location.href = "home.html?code="+finalFullCode;
+} 
 </script>
 <script>
          //$("#searchInput").click(function(){

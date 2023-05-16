@@ -132,25 +132,46 @@ function  sinaAjax( code, callback ){
                                 dataObj.code = codeArray[key].slice(2);
                                 dataObj.fullCode = codeArray[key];
                                 dataObj.prod_name = codeInfo[1];
+								// 当前价格
                                 dataObj.last_px = (parseFloat( codeInfo[3] )).toFixed(2);
+								// 今开
                                 dataObj.open_px = (parseFloat( codeInfo[5] )).toFixed(2);
+								// 昨收
                                 dataObj.preclose_px = (parseFloat( codeInfo[4] )).toFixed(2);
+								// 最高
                                 dataObj.high_px = (parseFloat( codeInfo[33] )).toFixed(2);
+								// 最低
                                 dataObj.low_px = (parseFloat( codeInfo[34] )).toFixed(2);
                                 // dataObj.px_change = (codeInfo[3] - codeInfo[2] ).toFixed(2);
-
+                                // 涨跌
                                 dataObj.px_change = ( parseFloat ( codeInfo[31] ) ).toFixed(2);
 
                                 // dataObj.px_change_rate = ( (codeInfo[3] - codeInfo[2] ) / codeInfo[2] * 100 ).toFixed(2);
+								//  涨跌%
                                 dataObj.px_change_rate = ( parseFloat( codeInfo[32] ) ).toFixed(2);
-
+                                // 成交量（手）  
                                 dataObj.buy_px = (parseFloat( codeInfo[6] )).toFixed(2);
                                 // dataObj.sell_px = (parseFloat( codeInfo[7] )).toFixed(2);
+								// 卖一
                                 dataObj.sell_px = ( parseFloat ( codeInfo[19] ) ).toFixed(2);
-
+								// 外盘
+								dataObj.out_business_amount = (parseFloat( codeInfo[7] )).toFixed(2);
+                                // 内盘 
                                 dataObj.business_amount = (parseFloat( codeInfo[8] )).toFixed(2);
+								// 买一 
                                 dataObj.business_balance = (parseFloat( codeInfo[9] )).toFixed(2);
-                                dataObj.amplitude = (parseFloat( codeInfo[3] )).toFixed(2);
+								// 振幅
+                                dataObj.amplitude = (parseFloat( codeInfo[43] )).toFixed(2);
+								
+								// 成交额
+								dataObj.turn_volume = (parseFloat( codeInfo[37] )).toFixed(2);
+								
+								// 总市值
+								dataObj.total_value = (parseFloat( codeInfo[45] )).toFixed(2)
+																
+								// 流通市值
+								dataObj.circulation_market_value = (parseFloat( codeInfo[44] )).toFixed(2)
+								
                                 res.data.push( dataObj );
                             }
                             callback( res );

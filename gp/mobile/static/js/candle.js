@@ -57,7 +57,7 @@ var lineData = new Array(); // 保存请求回来的行情数据
 var upColor = '#ff0200';
 var downColor = '#008002';
 var myChart = echarts.init(document.getElementById('chart'));
-var fullCode = $("#guName").data("fullcode");
+var fullCode = getQueryVariable("code");
 var shotCode = $("#guName").data("code");
 
 function qtmingxi(rawData){
@@ -194,10 +194,10 @@ function initMin(){
         dataType:"script",
         cache:"false",
         type:"get",
-        success:function(a){
+        success:function(){
             var minData = eval("min_data_" + fullCode);
             //qtmingxi( minData.data[fullCode].qt[fullCode] );
-            initMingxi(1);
+          //  initMingxi(1);
             var minDataFormat = splitData( minData.data[fullCode].data.data );
             drawAreaLine( minDataFormat );
         }
@@ -210,14 +210,14 @@ function initMingxi(market){
     $.ajax({
     	//url:"http://qmx.jrjimg.cn/mx.do?code="+fullCode+"&page=1&size=20",
     	//url:"http://mdfm.eastmoney.com/EM_UBG_MinuteApi/Js/Get?dtype=all&rows=20&page=1&id="+shotCode+"&gtvolume=&sort=desc&_=1558581381234",
-    	url:"https://mdfm.eastmoney.com/EM_UBG_MinuteApi/Js/Get?dtype=all&token=44c9d251add88e27b65ed86506f6e5da&rows=20&cb=var%20jQuerymingxi=&page=0&id="+shotCode+market+"&gtvolume=&sort=desc&_=1558581381234",
-     //   url:"http://web.ifzq.gtimg.cn/appstock/app/minute/query?_var=min_data_" + fullCode + "&code=" + fullCode + "&r=0.040982807166606294",
+    //	url:"https://mdfm.eastmoney.com/EM_UBG_MinuteApi/Js/Get?dtype=all&token=44c9d251add88e27b65ed86506f6e5da&rows=20&cb=var%20jQuerymingxi=&page=0&id="+shotCode+market+"&gtvolume=&sort=desc&_=1558581381234",
+        url:"http://web.ifzq.gtimg.cn/appstock/app/minute/query?_var=min_data_" + fullCode + "&code=" + fullCode + "&r=0.040982807166606294",
         dataType:"script",
         cache:"false",
         type:"get",
         success:function(a){
-            //var minData = eval("jQuerymingxi");
-        	if (jQuerymingxi.result) {
+            // var minData = eval("min_data_" + fullCode);
+        	if (jQuerymingxi.data) {
         		var detailData = jQuerymingxi.value.data;
                 for (i = 0; i < detailData.length; i++) {
                 	  var detaildata = detailData[i].split(",");
@@ -293,6 +293,33 @@ function initMonth(){
     });
 }
 
+function getCodeName(){
+	code = getQueryVariable("code");
+	sinaAjax(code, function(res){
+		if(res.state){ // 登录成功
+			var data = res.data[0];
+			$("#guName").html(data.prod_name);
+			$("#guName").attr("code",data.code);
+			$("#guName").attr("fullcode",data.fullCode);
+			$("#last_px").html(data.last_px);
+			$("#px_change").html(data.px_change);
+			$("#px_change_rate").html(data.px_change_rate);
+			$("#preclose_px").html(data.preclose_px);
+			$("#open_px").html(data.open_px);
+			$("#high_px").html(data.high_px);
+			
+			$("#low_px").html(data.low_px);
+			$("#amplitude").html(data.amplitude);
+			$("#buy_px").html(data.buy_px);
+			$("#turn_volume").html(data.turn_volume);
+			$("#business_amount").html(data.business_amount);
+			$("#out_business_amount").html(data.out_business_amount);
+			$("#total_value").html(data.total_value);
+			$("#circulation_market_value").html(data.circulation_market_value);
+		}
+	})
+		
+}
 
 
 
@@ -313,9 +340,6 @@ function numberFormat(number){
 
 var freshInterval = null;
 function refreshTimeLine(){
-    if( !isTradingTime() ){
-        return false;
-    }
     if( $(".koptions_nav .active a").data("type") == 0 ){
         initMin();
     }
@@ -327,7 +351,6 @@ function refreshTimeLine(){
         type:"get",
         success:function(a){
             var dayData = kline_day.data[fullCode].qt[fullCode];
-            console.log( dayData );
             var html = '<ul class="sell mui-col-xs-6 mui-row clear_fl">\
                             <li class=""><em>卖⑤</em><b class="red">' + dayData[27] + '</b><i>' + dayData[28] + '</i></li>\
                             <li class=""><em>卖④</em><b class="red">' + dayData[25] + '</b><i>' + dayData[26] + '</i></li>\
@@ -343,7 +366,6 @@ function refreshTimeLine(){
                             <li><em>买⑤</em><b class="red">' + dayData[17] + '</b><i>' + dayData[18] + '</i></li>\
                         </ul>';
 
-                        console.log( html );
             $("#stock-price").html( html );
 
             var now_price = dayData[3];
@@ -363,8 +385,13 @@ function refreshTimeLine(){
 $(function(){
     // 页面加载完成就加载分时图
     initMin();
+	refreshTimeLine();
+	getCodeName();
     /*** 没两秒请求数据， 更新页面 ****/
-    freshInterval = setInterval(refreshTimeLine, 4000);
+	if(isTradingTime() ){
+	     setInterval(refreshTimeLine,4000);
+		 setInterval(getCodeName, 4000);
+	}
 });
 
 /*** init分时图 ****/
