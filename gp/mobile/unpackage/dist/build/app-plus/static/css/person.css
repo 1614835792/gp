@@ -58,19 +58,19 @@ nav.ml_tab .mui-icon:before{
     flex-wrap: nowrap;
 }
 nav.ml_tab .mui-icon-home:before{
-    background-image: url(../static/staimages/tabbar/homeEmpty.png);
+    background-image: url(/static/images/tabbar/homeEmpty.png);
 }
 nav.ml_tab .mui-icon-celue:before{
-    background-image: url(../img/hangqingEmpty.png);
+    background-image: url(/static/images/tabbar/hangqingEmpty.png);
 }
 nav.ml_tab .mui-icon-zixuan:before{
-    background-image: url(../img/zixuanEmpty2.png);
+    background-image: url(/static/images/tabbar/zixuanEmpty2.png);
 }
 nav.ml_tab .mui-icon-jingu:before{
-    background-image: url(../img/celueEmpty.png);
+    background-image: url(/static/images/tabbar/celueEmpty.png);
 }
 nav.ml_tab .mui-icon-my:before{
-    background-image: url(../img/myEmpty.png);
+    background-image: url(/static/images/tabbar/mine.png);
 }
 
 
@@ -78,19 +78,19 @@ nav.ml_tab .mui-tab-item.mui-active {
     color: #fc5155 !important;
 }
 nav.ml_tab .mui-active .mui-icon-home:before{
-    background-image: url(../img/homePre.png);
+    background-image: url(/static/images/tabbar/homePre.png);
 }
 nav.ml_tab .mui-active .mui-icon-celue:before{
-    background-image: url(../img/hangqingPre.png);
+    background-image: url(/static/images/tabbar/hangqingPre.png);
 }
 nav.ml_tab .mui-active .mui-icon-zixuan:before{
-    background-image: url(../img/zixuanPre2.png);
+    background-image: url(/static/images/tabbar/zixuanPre2.png);
 }
 nav.ml_tab .mui-active .mui-icon-jingu:before{
-    background-image: url(../img/celuePre.png);
+    background-image: url(/static/images/tabbar/celuePre.png);
 }
 nav.ml_tab .mui-active .mui-icon-my:before{
-    background-image: url(../img/myPre.png);
+    background-image: url(/static/images/tabbar/myPre.png);
 }
 /*首页*/
 .person_header{
@@ -156,7 +156,7 @@ nav.ml_tab .mui-active .mui-icon-my:before{
     margin: 0 auto 15px auto;
     border-radius: 10px;
     box-shadow: 0 0 10px #e6e6e6;
-    background: #FFF url(../img/info_bg1.png) center no-repeat;
+    background: #FFF url(/static/images/mine/info_bg1.png) center no-repeat;
     background-size: 100% 100%;
 }
 .top_btn img{
@@ -936,7 +936,7 @@ nav.ml_tab .mui-icon-zixuan:before {
     content: "";
     width: 40px;
     height: 40px;
-    background: #f7f7f7 url(../img/zixuanEmpty2.png) no-repeat center center;
+    background: #f7f7f7 url(/static/images/tabbar/zixuanEmpty2.png) no-repeat center center;
     background-size: 95%;
     position: absolute;
     left: 50%;

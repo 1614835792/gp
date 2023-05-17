@@ -126,6 +126,9 @@ function  sinaAjax( code, callback ){
                             res.data = new Array();
                             var codeArray = code.split(",");
                             for(var key in codeArray){
+								if(!codeArray[key] || 'undefined' == codeArray[key]){
+									return;
+								}
                                 var codeInfo = eval( "v_" + codeArray[key] );
                                  codeInfo = codeInfo.split("~");
                                 var dataObj = {};
@@ -192,6 +195,9 @@ function  sinaAjax( code, callback ){
                             res.data = new Array();
                             var codeArray = code.split(",");
                             for(var key in codeArray){
+								if(!codeArray[key] || 'undefined' == codeArray[key]){
+									return;
+								}
                                 var codeInfo = eval( "v_" + codeArray[key] );
                                  codeInfo = codeInfo.split("~");
                                 var dataObj = {};
@@ -240,6 +246,9 @@ function  sinaAjax( code, callback ){
                 res.data = new Array();
                 var codeArray = code.split(",");
                 for(var key in codeArray){
+					if(!codeArray[key] || 'undefined' == codeArray[key]){
+						return;
+					}
                     var codeInfo = eval( "v_" + codeArray[key] );
                      codeInfo = codeInfo.split("~");
                     var dataObj = {};

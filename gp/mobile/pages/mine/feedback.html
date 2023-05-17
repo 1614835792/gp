@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>意见反馈</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+	<link href="/static/css/mui.min.css" rel="stylesheet">
+	<link href="/static/css/person.css" rel="stylesheet">
+	<style type="text/css">
+		.feedback_form{
+			padding: 20px 14px;
+		}
+		.my_form_group1{
+			margin: 10px 0;
+
+		}
+		.my_form_group1:after{
+			content: "";
+			display: block;
+			clear: both;
+		}
+		.my_form_group1 label{
+			float: left;
+			display: inline-block;
+			width: 80px;
+			color: #666;
+			font-size: 13px;
+			text-align: right;
+			height: 34px;
+			line-height: 34px;
+		}
+		.my_form_group1 input{
+			float: right;
+			height: 34px;
+			line-height: 34px;
+			width: calc(100% - 90px);
+			font-size: 13px;
+			color: #333;
+			border:1px solid #eee;
+			border-radius: 4px;
+			padding: 0 10px;
+		}
+		.feedback_text{
+			border:1px solid #eee;
+			float: right;
+			width: calc(100% - 90px);
+			font-size: 13px;
+			color: #333;
+			height: 100px;
+			padding: 12px;
+		}
+		.feedback_submt_btn{
+			width: 100%;
+			margin-top: 20px;
+			color: #fff;
+			border:0;
+			background: #fc5055!important;
+		}
+		 * {
+	        -webkit-user-select: auto!important;
+	    }
+	</style>
+</head>
+<body>
+	<header class="has_back_top ">
+		我要投诉
+		<a href="javascript:history.go(-1)" class="back_icon">
+			<img src="/static/images/business/back_icon.png">
+		</a>
+	</header>
+	<div style="width: 100%; height: 58px;"></div>
+	<form class="feedback_form">
+		<div class="my_form_group1">
+			<label>姓名：</label>
+			<input class="phone_input" id="username" name="username" placeholder="请输入姓名" />
+		</div>
+		<div class="my_form_group1">
+			<label>电话：</label>
+			<input class="phone_input" id="mobile" name="mobile" placeholder="请输入电话号码" />
+		</div>
+		<div class="my_form_group1">
+			<label>留言：</label>
+			<textarea class="feedback_text" id="feedback" name="feedback"></textarea>
+		</div>
+		<div class="my_form_group1">
+			<button  class="feedback_submt_btn">提交</button>
+		</div>
+	</form>
+
+	<script src="/static/js/jquery-2.2.0.min.js"></script>
+	<script src="/static/js/mui.min.js"></script>
+	<script type="text/javascript" src="/static/js/common.js"></script>
+	<script type="text/javascript" src="/static/js/config.js"></script>
+
+	<script>
+        // 提交登录
+        $(".feedback_submt_btn").click(function(e){
+            e.preventDefault();
+            var username = $("#username").val();
+            var mobile = $("#mobile").val();
+            var feedback = $("#feedback").val();
+
+            // 验证输入
+            if(username == "" || mobile == "" || feedback == ""){
+                $alert("请输入完整信息后提交");
+                return false;
+            }
+
+            if(username == ""){
+                $alert("请输入姓名");
+                return false;
+            }
+
+            if( !(/^[1][0,3,4,5,6,7,8,9][0-9]{9}$/.test($.trim(mobile))) ){
+                $alert("输入手机号码有误！");
+                return false;
+            }
+
+            if(feedback == ""){
+                $alert("您还没与填写反馈内容呢!");
+                return false;
+            }
+
+            var url = 'feedback.html';
+            var data = {
+                username: username,
+                mobile: mobile,
+                feedback: feedback
+            };
+            $ajaxCustom(url, data, function(res){
+                if(res.state){ // 登录成功
+
+                    $alert("反馈成功!");
+                    setTimeout(function(){
+                        window.location.href = "/";
+                    }, 1000);
+                }else{
+                    $alert(res.info);
+                }
+            })
+
+        });
+	</script>
+</body>
+</html>

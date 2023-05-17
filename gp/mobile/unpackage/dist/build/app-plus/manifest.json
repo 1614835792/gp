@@ -34,13 +34,9 @@
     },
     "popGesture": "close",
     "launchwebview": {
+      "render": "always",
       "id": "1",
       "kernel": "WKWebview"
-    },
-    "statusbar": {
-      "immersed": "supportedDevice",
-      "style": "light",
-      "background": "#F8F8F8"
     },
     "usingComponents": true,
     "nvueStyleCompiler": "uni-app",
@@ -65,7 +61,9 @@
           "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
         ]
       },
-      "apple": {},
+      "apple": {
+        "dSYMs": false
+      },
       "plugins": {
         "ad": {},
         "audio": {
@@ -75,72 +73,28 @@
         }
       }
     },
+    "statusbar": {
+      "immersed": "supportedDevice",
+      "style": "dark",
+      "background": "#F8F8F8"
+    },
     "uniStatistics": {
       "enable": false
     },
     "allowsInlineMediaPlayback": true,
-    "safearea": {
-      "background": "#ffffff",
-      "bottom": {
-        "offset": "auto"
-      }
-    },
     "uni-app": {
       "control": "uni-v3",
       "vueVersion": "3",
-      "compilerVersion": "3.4.15",
+      "compilerVersion": "3.7.11",
       "nvueCompiler": "uni-app",
       "renderer": "auto",
       "nvue": {
         "flex-direction": "column"
       },
-      "nvueLaunchMode": "normal"
-    },
-    "tabBar": {
-      "position": "bottom",
-      "color": "#000000",
-      "selectedColor": "#000000",
-      "borderStyle": "rgba(255,255,255,0.4)",
-      "blurEffect": "none",
-      "fontSize": "10px",
-      "iconWidth": "24px",
-      "spacing": "3px",
-      "height": "50px",
-      "backgroundColor": "#ffffff",
-      "list": [
-        {
-          "pagePath": "pages/home/index",
-          "iconPath": "/static/images/tabbar/home.png",
-          "selectedIconPath": "/static/images/tabbar/home_.png",
-          "text": "首页"
-        },
-        {
-          "pagePath": "pages/biz/custom/index",
-          "iconPath": "/static/images/tabbar/hangqingEmpty.png",
-          "selectedIconPath": "/static/images/tabbar/hangqingPre.png",
-          "text": "自选"
-        },
-        {
-          "pagePath": "pages/biz/business/index",
-          "iconPath": "/static/images/tabbar/zixuanEmpty2.png",
-          "selectedIconPath": "/static/images/tabbar/zixuanEmpty2.png",
-          "text": "交易"
-        },
-        {
-          "pagePath": "pages/biz/holding/index",
-          "iconPath": "/static/images/tabbar/celueEmpty.png",
-          "selectedIconPath": "/static/images/tabbar/work_.png",
-          "text": "持仓"
-        },
-        {
-          "pagePath": "pages/mine/index",
-          "iconPath": "/static/images/tabbar/mine.png",
-          "selectedIconPath": "/static/images/tabbar/mine_.png",
-          "text": "我的"
-        }
-      ],
-      "selectedIndex": 0,
-      "shown": true
+      "nvueLaunchMode": "normal",
+      "webView": {
+        "minUserAgentVersion": "49.0"
+      }
     }
   },
   "locale": "zh-Hans",

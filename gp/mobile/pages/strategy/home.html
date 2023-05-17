@@ -20,8 +20,8 @@ body{
         font-size: 13px;
     }
     .remove_btn, .add_h_btn {
-        width: 10%!important;
-        float: left;
+		margin-top: 10px;
+		margin-bottom: 10px;
     }
     .search_h_list span:nth-child(1) {
         width: 50%;
@@ -70,21 +70,13 @@ body{
                 <span class="rt clear_btn">清空</span>
             </h1>
             <ul class="search_h_list">
-                <!-- <li>
-                    <a  class="flex_nowrap" href="hangqing.html?code=600179">
-                        <span>招商银行 600179</span>
-                        <span class="red">28.17</span>
-                        <span class="red">+8.17%</span>
-                        <span class="add_h_btn"><img src="/resource/home/img/add_btn.png"></span>
-                        <span class="remove_btn"><img class="rt" src="/resource/home/img/remove_btn.png"></span>
-                    </a> 
-                </li>-->
+       
             </ul>
         </div>
         <div class="search_history hot_recommend" style="margin-top: 8px;">
             <h1 class="search_h_title clear_fl">热点强势股</h1>
             <ul class="recommend_list flex_nowrap">
-                                <li data-code="600519" data-fullcode="sh600519" class="fresh600519 hotItems">
+                <li data-code="600519" data-fullcode="sh600519" class="fresh600519 hotItems">
                     <a href="/stock/buy.html?code=600519">
                         <p class="shares_name">贵州茅台</p>
                         <p class="shares_code">600519</p>
@@ -95,7 +87,7 @@ body{
                         </p>
                     </a>
                 </li>
-                                <li data-code="601318" data-fullcode="sh601318" class="fresh601318 hotItems">
+                <li data-code="601318" data-fullcode="sh601318" class="fresh601318 hotItems">
                     <a href="/stock/buy.html?code=601318">
                         <p class="shares_name">中国平安</p>
                         <p class="shares_code">601318</p>
@@ -106,7 +98,7 @@ body{
                         </p>
                     </a>
                 </li>
-                                <li data-code="600036" data-fullcode="sh600036" class="fresh600036 hotItems">
+                <li data-code="600036" data-fullcode="sh600036" class="fresh600036 hotItems">
                     <a href="/stock/buy.html?code=600036">
                         <p class="shares_name">招商银行</p>
                         <p class="shares_code">600036</p>
@@ -117,7 +109,7 @@ body{
                         </p>
                     </a>
                 </li>
-                            </ul>
+             </ul>
         </div>
     </div>
     <nav class="ml_tab mui-bar mui-bar-tab">
@@ -147,15 +139,24 @@ body{
 </html>
 <script src="/static/js/jquery-2.2.0.min.js"></script>
 <script src="/static/js/mui.min.js"></script>
-<script type="text/javascript" src="/static/js/common.js?time=123456789"></script>
-
     <script type="text/javascript" src="/static/js/stock.js"></script>
     <script src="/static/js/jquery-2.2.0.min.js"></script>
-    <script type="text/javascript" src="/static/js/common.js"></script>
+    <script type="text/javascript" src="/static/js/common.js?v=123456we"></script>
     <script type="text/javascript">
 /**
  * 判断当前时间是否在9:30-11:30, 13:00-15:00（交易时间）
  */
+function saveSearchHisstory(fullCode){
+	 if(undefined != window.localStorage.searchHistory){
+		 var arrSearchHistory = window.localStorage.searchHistory.split(",");
+		 if(-1 == arrSearchHistory.indexOf(fullCode)){
+			 window.localStorage.searchHistory += ","+fullCode;
+		 }
+	 }else{
+		 window.localStorage.searchHistory = fullCode;
+	 }
+	 window.location.href = "/pages/biz/business/home.html?code="+ fullCode +"&pageType=celue"
+}
 function isTradingTime(){
     var date = new Date();
     //判断是不是周末
@@ -210,7 +211,6 @@ function isTradingTime(){
         });
         var searchCon = "";
         function displayItems(items) {
-           
             var code = new Array();
             var html = "";
             if (items==''){ //搜索结果为空， 置空列表
@@ -234,7 +234,6 @@ function isTradingTime(){
                         }
                     }
                 }
-console.log(code);
                 if(code.length == 0){
                     var html = '<ul><li class="no_more"></li><li style="text-align:center;font-size:12px;color:#999;background:transparent;border:none;">暂无搜索结果</li></ul>';
                     $(".search_content_box").html( html );
@@ -259,25 +258,24 @@ console.log(code);
                                 }else{
                                     className = "green"
                                 }
-                                html += '<li class="list_header flex_nowrap">\
-                                    <div style="width: 15%; display: none;" class="mui-input-row mui-checkbox mui-left select_btn">\
-                                        <label></label>\
-                                        <input name="checkbox" value="Item 1" type="checkbox">\
-                                    </div>\
-                                    <a style="width:80%" class="flex_nowrap" href="/stock/home.html?code='+ res.data[key].code +'&pageType=celue">\
-                                        <span class="zi_name" style="width:80%;padding-left: 18px;"> <span>'+ res.data[key].prod_name +'</span><span data-code="'+ res.data[key].fullCode +'" data-fullcode="'+ res.data[key].full_code +'">' + res.data[key].code + '</span></span>\
-                                        <span style="width:40%" class="' + className + '">' + res.data[key].last_px + '</span>\
-                                        <span style="width:40%" class="' + className + '">' + res.data[key].px_change_rate + '%</span>\
-                                        \
-                                    </a>\
-                                    <span style="width:20%">\
-                                        <span href="" class="mui-btn mui-btn-success mui-btn-outlined">创建策略</span>\
-                                    </span>\
-                                </li>';
+                                html += '<li class="list_header flex_nowrap"> '
+                                html += '<div style="width: 15%; display: none;" class="mui-input-row mui-checkbox mui-left select_btn"> <label></label>'
+                                html += '<input name="checkbox" value="Item 1" type="checkbox"> '
+                                html +=  '</div>'
+                                html += ' <a style="width:80%" class="flex_nowrap" href="javascript:saveSearchHisstory(\''+res.data[key].fullCode+'\')">'
+                                html += ' <span class="zi_name" style="width:80%;padding-left: 18px;"> <span>'+ res.data[key].prod_name +'</span><span data-code="'+ res.data[key].fullCode +'" data-fullcode="'+ res.data[key].fullCode +'">' + res.data[key].code + '</span></span> '
+                                html +=  ' <span style="width:40%" class="' + className + '">' + res.data[key].last_px + '</span> '
+                                html += '<span style="width:40%" class="' + className + '">' + res.data[key].px_change_rate + '%</span>'
+                                html +=   '</a>'
+                                html +=  ' <span style="width:20%"> '
+                                html +=  ' <span href="" class="mui-btn mui-btn-success mui-btn-outlined">创建策略</span>'
+                                html +=  '  </span>'
+                                html += '</li>';
                             }
 
                             $(".search_content_box").html( "<ul class='zixuan_list'></ul>" );
                             $(".zixuan_list").html(html);
+							
                             refreshTimer = setInterval(refreshPrice,3000);
                         }else{
                             // $alert(res.info);
@@ -292,36 +290,39 @@ console.log(code);
             var searchHistory = storage.searchHistory;
             var _url = "/stock/simple.html",
                     _oData = {code: searchHistory};
-            sinaAjax(searchHistory , function(res){
-                if(res.state){ // 登录成功
-                    var html = "";
-                    var array = searchHistory.split(",");
-                    for( var i in array){
-                        var key = i;
-                        var rate = parseFloat(res.data[key].px_change_rate);
-                        var className = "";
-                        if(rate >= 0){
-                            className = "red"
-                        }else{
-                            className = "green"
-                        }
-                        html += '<li data-code="'+ res.data[key].code +'" data-fullcode="'+ res.data[key].fullCode +'" class="clear_fl fresh'+ res.data[key].code +'">\
-                    <a style="width:80%"  class="flex_nowrap lf" href="/stock/home.html?code='+ res.data[key].code +'&pageType=celue">\
-                        <span>'+res.data[key].prod_name+' '+ res.data[key].code +'</span>\
-                        <span class="'+ className +'">' + res.data[key].last_px + '</span>\
-                        <span class="'+ className +'">' + res.data[key].px_change_rate + '%</span>\
-                        </a>\
-                        <span class="add_h_btn"><img  src="/resource/home/img/add_btn.png"></span>\
-                        <span class="remove_btn"><img class="rt" src="/resource/home/img/remove_btn.png"></span>\
-                </li>';
-                    }
-
-                    $(".search_h_list").html(html);
-                    searchCon = $(".search_content_box").html();
-                }else{
-                    // $alert(res.info);
-                }
-            });
+			if(searchHistory){
+				sinaAjax(searchHistory , function(res){
+				    if(res.state){ // 登录成功
+				        var html = "";
+				        var array = searchHistory.split(",");
+				        for( var i in res.data){
+				            var key = i;
+				            var rate = parseFloat(res.data[key].px_change_rate);
+				            var className = "";
+				            if(rate >= 0){
+				                className = "red"
+				            }else{
+				                className = "green"
+				            }
+				            html += '<li data-code="'+ res.data[key].code +'" data-fullcode="'+ res.data[key].fullCode +'" class="clear_fl fresh'+ res.data[key].code +'">'
+							html +=     '<a style="width:100%" class="flex_nowrap" href="javascript:saveSearchHisstory(\''+res.data[key].fullCode+'\')">'
+							html +=         '<span>'+res.data[key].prod_name+' '+ res.data[key].code +'</span>\
+											 <span class="'+ className +'">' + res.data[key].last_px + '</span>\
+											 <span class="'+ className +'">' + res.data[key].px_change_rate + '%</span>\
+										 </a>'
+							html += '    <span class="add_h_btn"><img src="/static/images/strategy/add_btn.png"></span>' ;
+							html +=	'    <span class="remove_btn"><img class="rt" src="/static/images/strategy/remove_btn.png"></span>'; 
+							html +=	  '</li>';
+				        }
+				
+				        $(".search_h_list").html(html);
+				        searchCon = $(".search_content_box").html();
+				    }else{
+				        // $alert(res.info);
+				    }
+				});
+			}		
+         
 
             refreshTimer1 = setInterval(refreshPrice1,3000);
         });
@@ -406,7 +407,7 @@ console.log(code);
                                             <label></label>\
                                             <input name="checkbox" value="Item 1" type="checkbox">\
                                         </div>\
-                                        <a style="width:80%" class="flex_nowrap" href="/stock/home.html?code='+ res.data[key].code +'&pageType=celue">\
+                                        <a style="width:80%" class="flex_nowrap" href="/pages/biz/business/home.html?code='+ res.data[key].fullCode +'&pageType=celue">\
                                             <span class="zi_name" style="width:80%;padding-left: 18px;"> <span>'+ res.data[key].prod_name +'</span><span data-code="' + res.data[key].fullCode + '">' + res.data[key].code + '</span></span>\
                                             <span style="width:40%" class="' + className + '">' + res.data[key].last_px + '</span>\
                                             <span style="width:40%" class="' + className + '">' + res.data[key].px_change_rate + '%</span>\
@@ -469,29 +470,31 @@ console.log(code);
 
 
         //搜索历史
-        $(".search_content_box").on("click", ".zixuan_list li", function(){
-            var code = $(this).find(".zi_name span+span").attr("data-code");
-            var _code = $(this).find(".zi_name span+span").html();
+   //      $(".search_content_box").on("click", function(){
+			// debugger	
+   //          var code = $(this).find(".zi_name span+span").attr("data-code");
+   //          var _code = $(this).find(".zi_name span+span").html();
 
-            var storage = window.localStorage;
-            if( storage.searchHistory ){
-                var searchHistory = storage.searchHistory;
-                searchHistory = searchHistory.split(",");
-                var index = searchHistory.indexOf(code);
-                if (index > -1) {
-                    searchHistory.splice(index, 1);
-                }
-                if( searchHistory.length >= 10 ){
-                    searchHistory.splice(8, searchHistory.length - 9);
-                }
-                searchHistory.unshift( code );
-                searchHistory = searchHistory.join(",");
-                storage.searchHistory = searchHistory;
-            }else{
-                storage.searchHistory = code;
-            }
-            window.location.href = "/stock/home.html?code=" + _code;
-        });
+   //          var storage = window.localStorage;
+   //          if( storage.searchHistory ){
+   //              var searchHistory = storage.searchHistory;
+			// 	searchHistory = searchHistory.replaceAll("undefined","");
+   //              searchHistory = searchHistory.split(",");
+   //              var index = searchHistory.indexOf(code);
+   //              if (index > -1) {
+   //                  searchHistory.splice(index, 1);
+   //              }
+   //              if( searchHistory.length >= 10 ){
+   //                  searchHistory.splice(8, searchHistory.length - 9);
+   //              }
+   //              searchHistory.unshift( code );
+   //              searchHistory = searchHistory.join(",");
+   //              storage.searchHistory = searchHistory;
+   //          }else{
+   //              storage.searchHistory = code;
+   //          }
+   //          window.location.href = "/pages/biz/business/home.html?code=" + _code;
+   //      });
 
 
     </script>

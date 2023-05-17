@@ -50,6 +50,17 @@ export default {
 	// 不需要登录（没有token）页面白名单
 	NO_TOKEN_WHITE_LIST: [
 		noTokenBackUrl,
+		'/pages/work/index',
+		'/pages/mine/index',
+		'/pages/mine/setting/index',
+		'/pages/mine/info/edit',
+		'/pages/mine/pwd/index',
+		'/pages/mine/info/index',
+		'/pages/biz/custom/index',
+		'/pages/biz/business/index',
+		'/pages/biz/holding/index',
+		'/pages/home/index',
+		'/pages/biz/business/buy.html',
 		'/',
 		// '/pages/home/index',
 	],

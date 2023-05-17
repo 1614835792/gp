@@ -11,14 +11,14 @@
 				"navigationStyle": "custom"
 				//#endif
 			}
-		}
-		// {
-		// 	"path": "pages/home/index",
-		// 	"style": {
-		// 		"navigationBarTitleText": "首页",
-		// 		"navigationStyle": "custom"
+		},
+		{
+			"path": "pages/home/index",
+			"style": {
+				"navigationBarTitleText": "首页",
+				"navigationStyle": "custom"
 				
-		// 	}
+			}
 		// },
 		// {
 		// 	"path": "pages/biz/custom/index",

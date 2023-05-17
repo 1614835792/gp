@@ -1,7 +1,7 @@
 <template>
 	<view>
-		<web-view :webview-styles="webviewStyles" src="index.html"></web-view>
-	</view>
+			<web-view :webview-styles="webviewStyles" src="index.html"></web-view>
+		</view>
 </template>
 
 <script>

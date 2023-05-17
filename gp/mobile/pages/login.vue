@@ -109,7 +109,10 @@
 		// }).catch(err => {
 		// 	console.error(err)
 		// })
-        window.location.href = "/pages/home/index.html"
+		uni.navigateTo({
+		    url: '/pages/home/index'   
+		});
+      //  window.location.href = ""
 	}
 </script>
 
