@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>
+入金
+</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <link href="../../css/mui.min.css" rel="stylesheet">
+    <link href="../../css/person.css" rel="stylesheet">
+    
+<script type="text/javascript">
+//iOS Web APP中点击链接跳转到Safari 浏览器新标签页的问题 devework.com
+//stanislav.it/how-to-prevent-ios-standalone-mode-web-apps-from-opening-links-in-safari
+if(("standalone" in window.navigator) && window.navigator.standalone){
+var noddy, remotes = false;
+document.addEventListener('click', function(event) {
+noddy = event.target;
+while(noddy.nodeName !== "A" && noddy.nodeName !== "HTML") {
+noddy = noddy.parentNode;
+}
+if('href' in noddy && noddy.href.indexOf('http') !== -1 && (noddy.href.indexOf(document.location.host) !== -1 || remotes))
+{
+event.preventDefault();
+document.location.href = noddy.href;
+}
+},false);
+}
+</script>
+<style>
+	.accInfo{
+		width: 90%;
+		margin: 30px auto 0 auto;
+	}
+	.accInfo>div{
+		width: 100%;
+	}
+	.accInfo .infoTitle{
+		display: inline-block;
+		margin-bottom: 0;
+		width: 30%;
+		height: 30px;
+		line-height: 40px;
+		color: #2F2F2F;
+		font-size: 15px;
+	}
+	.accInfo .infoCopy{
+		display: inline-block;
+		width: 25%;
+		height: 25px;
+		line-height: 25px;
+		color: #0000cc;
+		text-align: center;
+		font-size: 14px;
+		border: 1px solid #0000cc;
+		border-radius: 10px;
+	}
+	.accInfo .infoCon{
+		width: 100%;
+		height: 40px;
+		line-height: 40px;
+		color: #999999;
+		font-size: 15px;
+	}
+</style>
+
+</head>
+
+<body class="payment_body">
+
+    
+<div class="payment_body">
+	<header class="has_back_top ">
+		入金
+		<!--<a href="javascript:history.go(-1)" class="back_icon">-->
+		<a href="javascript:history.go(-1)" class="back_icon">
+			<img src="../../img/back_icon.png">
+		</a>
+	</header>
+	<!--<header class="header_con">-->
+		<!--<a href="/user/home.html" class="lf">-->
+			<!--<img src="/resource/home/img/call_back.png">-->
+		<!--</a>-->
+		<!--<p>入金</p>-->
+	<!--</header>-->
+	<div style="width: 100%; height: 58px;"></div>
+
+	<div class=" " style="padding:0;">
+		<p class="selecthe">选择入金面额（元）</p>
+		<div class="col-xs-12">
+			<div style="padding: 0 10px;" class="form-group field-chargeAmount required">
+				<input type="text" id="chargeAmount" class="form-control custorm_count" placeholder="可输入10-10000的整数金额（元）">
+				<div class="help-block"></div>
+			</div>
+		</div>
+		<form id="payform" action="" method="post">
+			<div class="boxflex1 paystyle" style="padding: 10px 15px 0;">
+			<div class="group_btn clear_fl">
+				<div class="btn_re">
+					<a class="btn_money on">1000</a>
+				</div>
+				<div class="btn_re btn_center">
+					<a class="btn_money">1500</a>
+				</div>
+				<div class="btn_re btn_center">
+					<a class="btn_money">2500</a>
+				</div>
+				<div class="btn_re">
+					<a class="btn_money">5500</a>
+				</div>
+				<div class="btn_re">
+					<a class="btn_money">8500</a>
+				</div>
+				<div class="btn_re">
+					<a class="btn_money">10500</a>
+				</div>
+				<div class="btn_re">
+					<a class="btn_money">15500</a>
+				</div>
+				<div class="btn_re">
+					<a class="btn_money">20000</a>
+				</div>
+				<div class="btn_re">
+					<a class="btn_money">25000</a>
+				</div>
+				<div class="btn_re">
+					<a class="btn_money">50000</a>
+				</div>
+			</div>
+			<input type="hidden" id="amount" name="amount" value="1000">
+			<input type="hidden" id="type" name="type" value="1">
+		</div>
+			<!--div class="boxflex1">
+				<div class="moneyhead">入金方式</div>
+			</div>
+			<div class="payType">
+								div class="boxflex1 paystyle checkImg2" style="border-top:1px solid #e0e0e0!important;" data-type="1">
+					<img src="/resource/home/img/zfb.png" style="width: 20px;">
+					<span>支付宝支付</span>
+					<img src="/resource/home/img/seleted.png" alt="" style="float:right;" class="check-payone checkPay">
+				</div>
+				<div class="boxflex1 paystyle checkImg2" style="border-top:0;" data-type="2">
+					<img src="/resource/home/img/wx.png" style="width: 20px;">
+					<span>微信支付</span>
+					<img src="/resource/home/img/seleted.png" alt="" style="float:right;" class="check-payone checkPay">
+				</div>
+				
+				<div class="boxflex1 paystyle checkImg2" style="border-top:0;" data-type="3">
+					<img src="/resource/home/img/yl.png" style="width: 20px;">
+					<span>银行卡</span>
+					<img src="/resource/home/img/seleted.png" alt="" style="float:right;" class="check-payone checkPay">
+				</div>
+			</div-->
+			<div class="recharge-btn" id="payBtn">立即入金</div>
+
+			<p class="recharge-run">提示：请提前绑定银行卡！</p>
+		</form>
+	</div>
+
+</div>
+
+    
+
+</body>
+</html>
+<script src="../../js/jquery-2.2.0.min.js"></script>
+<script src="../../js/mui.min.js"></script>
+<script type="text/javascript" src="../../js/common.js?time=123456789"></script>
+
+<script type="text/javascript" src="../../js/clipboard.min.js"></script>
+<script>
+    //复制对公账户
+	function copyDGZH() {
+        var clipboard = new ClipboardJS('#codeDGZHBtn');
+        clipboard.on('success', function(e) {
+            $alert("复制成功");
+            e.clearSelection();
+            console.log(e.clearSelection);
+        });
+    }
+    //复制账户
+    function copyZH() {
+        var clipboard = new ClipboardJS('#codeZHBtn');
+        clipboard.on('success', function(e) {
+            $alert("复制成功");
+            e.clearSelection();
+            console.log(e.clearSelection);
+        });
+    }
+    //复制开户行
+	function copyYH(){
+        var clipboard = new ClipboardJS('#codeYHBtn');
+        clipboard.on('success', function(e) {
+            $alert("复制成功");
+            e.clearSelection();
+            console.log(e.clearSelection);
+        });
+	}
+    $(function() {
+    var _bind = "1";
+    if(_bind == "0"){
+        var _jump = "/user/modify-card.html?callback=L3VzZXIvcmVjaGFyZ2UuaHRtbA%3D%3D";
+        $alert("请先绑定银行卡！");
+        setTimeout(function(){
+            window.location.href = _jump;
+        }, 1000);
+    }
+        /*var options = [68, 160, 340, 860, 1500, 2300, 3200, 4400];
+        $(".btn_money").each(function(index, el) {
+            var range = parseInt( 10 - Math.random() * 20 );
+            var count = options[index] + range;
+            $(el).html(count);
+        });*/
+        $(".btn_money").click(function() {
+            $(".on").removeClass("on");
+            $(this).addClass("on");
+            $('#amount').val($(this).html());
+            $("#chargeAmount").val( $(this).html() );
+        });
+
+        $(".btn_money .on").trigger("click");
+
+        $("#chargeAmount").blur(function(){
+            var val = $(this).val();
+
+            $(".btn_money.on").removeClass("on");
+            var amount = $(this).val();
+            var _this = $(this);
+            if( isNaN(amount) ){
+                $alert("入金金额必须为数字");
+				_this.val(10);
+				$('#amount').val(10);
+				amount = 10;
+            }
+            if(amount < 10){
+                $alert("入金金额不小于10元");
+				_this.val(10);
+				$('#amount').val(10);
+				amount = 10;
+            }
+            $('#amount').val(amount);
+        });
+
+        $('#payBtn').on('click', function(){
+            var amount = $('#amount').val();
+            if(!amount || isNaN(amount) || amount <= 0){
+                alert('金额输入不合法!');
+                return false;
+            }
+            var _bind = "1";
+            /* if(_bind == "0"){
+                var _jump = "/user/modify-card.html?callback=L3VzZXIvcmVjaGFyZ2UuaHRtbA%3D%3D";
+                $alert("请先绑定银行卡！");
+                setTimeout(function(){
+					window.location.href = _jump;
+                }, 1000);
+                return false;
+			} */
+			var _type = $('#type').val();
+           
+          $("#payform").submit();
+        });
+
+        $('.payType .paystyle').on('click', function(){
+            var type = $(this).data('type');
+            $('.payType .paystyle').each(function(){
+                if (type == $(this).data('type')) {
+                    $(this).find('.checkPay').attr({"src":"/resource/home/img/seleted.png"});
+                } else {
+                    $(this).find('.checkPay').attr({"src":"/resource/home/img/notseleted.png"});
+                }
+            });
+            $('#type').val(type);
+        });
+
+        $('.payType .paystyle:nth-child(1)').trigger("click");
+
+    });
+
+</script>

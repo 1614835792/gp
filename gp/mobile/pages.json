@@ -1,6 +1,15 @@
 {
 	"pages": [
 		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		
+		{
+			"path": "pages/home/index",
+			"style": {
+				"navigationBarTitleText": "首页",
+				"navigationStyle": "custom"
+			}	
+		},
+		
 		{
 			"snowyCode": "login",
 			"path": "pages/login",
@@ -12,49 +21,44 @@
 				//#endif
 			}
 		},
+	
+
 		{
-			"path": "pages/home/index",
+			"path": "pages/strategy/index",
 			"style": {
-				"navigationBarTitleText": "首页",
+				"navigationBarTitleText": "自选",
 				"navigationStyle": "custom"
 				
 			}
-		// },
-		// {
-		// 	"path": "pages/biz/custom/index",
-		// 	"style": {
-		// 		"navigationBarTitleText": "自选",
-		// 		"navigationStyle": "custom"
-				
-		// 	}
-		// },
-		// {
-		// 	"path": "pages/biz/business/index",
-		// 	"style": {
-		// 		"navigationBarTitleText": "交易",
-		// 		//#ifdef H5
-		// 		"navigationStyle": "custom"
-		// 		//#endif
-		// 	}
-		// },
-		// {
-		// 	"path": "pages/biz/holding/index",
-		// 	"style": {
-		// 		"navigationBarTitleText": "持仓",
-		// 		//#ifdef H5
-		// 		"navigationStyle": "custom"
-		// 		//#endif
-		// 	}
-		// },
-		// {
-		// 	"path": "pages/mine/index",
-		// 	"style": {
-		// 		"navigationBarTitleText": "我的",
-		// 		//#ifdef H5
-		// 		"navigationStyle": "custom"
-		// 		//#endif
-		// 	}
-		// }
+		},
+		{
+			"path": "pages/stock/index",
+			"style": {
+				"navigationBarTitleText": "交易",
+				//#ifdef H5
+				"navigationStyle": "custom"
+				//#endif
+			}
+		},
+		{
+			"path": "pages/order/index",
+			"style": {
+				"navigationBarTitleText": "持仓",
+				//#ifdef H5
+				"navigationStyle": "custom"
+				//#endif
+			}
+		},
+		{
+			"path": "pages/user/index",
+			"style": {
+				"navigationBarTitleText": "我的",
+				//#ifdef H5
+				"navigationStyle": "custom"
+				//#endif
+			}
+		}
+		
     ],
 	"tabBar": {
 		"color": "#000000",
@@ -64,32 +68,32 @@
 		"list": [
 			// {
 			// 	"pagePath": "pages/home/index",
-			// 	"iconPath": "static/images/tabbar/home.png",
-			// 	"selectedIconPath": "static/images/tabbar/home_.png",
+			// 	"iconPath": "static/html/img/home.png",
+			// 	"selectedIconPath": "static/html/img/home_.png",
 			// 	"text": "首页"
 			// }, 
 			// {
-			// 	"pagePath": "pages/biz/custom/index",
-			// 	"iconPath": "static/images/tabbar/hangqingEmpty.png",
-			// 	"selectedIconPath": "static/images/tabbar/hangqingPre.png",
+			// 	"pagePath": "pages/strategy/index",
+			// 	"iconPath": "static/html/img/hangqingEmpty.png",
+			// 	"selectedIconPath": "static/html/img/hangqingPre.png",
 			// 	"text": "自选"
 			// },
 			// {
-			// 	"pagePath": "pages/biz/business/index",
-			// 	"iconPath": "static/images/tabbar/zixuanEmpty2.png",
-			// 	"selectedIconPath": "static/images/tabbar/zixuanEmpty2.png",
+			// 	"pagePath": "pages/stock/index",
+			// 	"iconPath": "static/html/img/zixuanEmpty2.png",
+			// 	"selectedIconPath": "static/html/img/zixuanEmpty.png",
 			// 	"text": "交易"
 			// },
 			// {
-			// 	"pagePath": "pages/biz/holding/index",
-			// 	"iconPath": "static/images/tabbar/celueEmpty.png",
-			// 	"selectedIconPath": "static/images/tabbar/work_.png",
+			// 	"pagePath": "pages/order/index",
+			// 	"iconPath": "static/html/img/celueEmpty.png",
+			// 	"selectedIconPath": "static/html/img/work_.png",
 			// 	"text": "持仓"
 			// },
 			// {
-			// 	"pagePath": "pages/mine/index",
-			// 	"iconPath": "static/images/tabbar/mine.png",
-			// 	"selectedIconPath": "static/images/tabbar/mine_.png",
+			// 	"pagePath": "pages/user/index",
+			// 	"iconPath": "static/html/img/mine.png",
+			// 	"selectedIconPath": "static/html/img/mine_.png",
 			// 	"text": "我的"
 			// }
 		]

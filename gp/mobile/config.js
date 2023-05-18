@@ -7,7 +7,7 @@ export default {
 	SERVER_TYPE: 'SNOWY',
 
 	// 接口地址，也就是后端地址
-	 BASE_URL: 'http://localhost:82/app',
+	 BASE_URL: 'http://192.168.1.19:82/app',
 	 
   //  BASE_URL: 'http://ngg59g.natappfree.cc/app',
 
@@ -50,18 +50,6 @@ export default {
 	// 不需要登录（没有token）页面白名单
 	NO_TOKEN_WHITE_LIST: [
 		noTokenBackUrl,
-		'/pages/work/index',
-		'/pages/mine/index',
-		'/pages/mine/setting/index',
-		'/pages/mine/info/edit',
-		'/pages/mine/pwd/index',
-		'/pages/mine/info/index',
-		'/pages/biz/custom/index',
-		'/pages/biz/business/index',
-		'/pages/biz/holding/index',
-		'/pages/home/index',
-		'/pages/biz/business/buy.html',
-		'/',
 		// '/pages/home/index',
 	],
 	// 有token访问退回页面

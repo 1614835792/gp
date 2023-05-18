@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>
+自选
+</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <link href="../../css/mui.min.css" rel="stylesheet">
+    <link href="../../css/person.css?v=123456789" rel="stylesheet">
+    
+<style type="text/css">
+body{
+        background: #f5f5f5 !important;
+    }
+    .zixuan_list{
+        margin-bottom: 110px;
+        width: 95%;
+        margin: 0 auto;
+        border-radius: 10px;
+        box-shadow: 0 0 10px #e6e6e6;
+    }
+    .delete_panel{
+        display: none;
+    }
+    * {
+        -webkit-user-select: auto!important;
+    }
+    .search_con input {
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
+        padding-left: 40px;
+        background-size: 20px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        color: #aaa;
+        padding-right: 30px;
+    }
+    body{
+        padding-bottom: 50px;
+    }
+    .edit_btn {
+        background-size: 100%;
+        /*top: 20px;*/
+        top: 17px;
+        right: 18px;
+    }
+</style>
+
+</head>
+
+<body class="  mui-ios mui-ios-10 mui-ios-10-3">
+
+    
+    <header class="zixuan_top">
+        自选
+    </header>
+
+    <header class="strategy_top">
+        <p>
+            <a href="../strategy/dynamics.html">沪深</a>
+            <a href="javascript:void(0);" class="active">自选</a>
+            
+            <!--<a href="/index/user/position.html">我的持仓</a>-->
+            <!--<a href="/order/index.html">我的持仓</a>-->
+        </p>
+    </header>
+
+
+
+    <div class="search_con">
+        <input styel="-webkit-user-select:auto" id="searchInput" placeholder="请输入股票代码/名称">
+        <span class="edit_btn"></span>
+    </div>
+    <ul class="zixuan_list">
+        <li class="list_header flex_nowrap">
+            <div class="select_btn" style="width:15%">
+            </div>
+            <span style="width:40%;padding-left: 18px">名称代码</span>
+            <span style="width:20%">现价</span>
+            <span style="width:20%">涨跌幅</span>
+            <span style="width:20%"></span>
+        </li>
+            </ul>
+    <div class="delete_panel clear_fl">
+        <!-- <div id="allChecked" style="display: none;float: left;height: 32px;" class="mui-input-row mui-checkbox mui-left select_btn">
+            <label></label>
+            <input name="checkbox" value="Item 1" type="checkbox">
+        </div> -->
+        <button class="rt zixun_delete_btn">删除</button>
+    </div>
+	<nav class="ml_tab mui-bar mui-bar-tab">
+		  <a class="mui-tab-item" href="/pages/home/index.html">
+			  <span class="mui-icon mui-icon-home"></span>
+			  <span class="mui-tab-label">首页</span>
+		  </a>
+		  <a class="mui-tab-item center_item" href="/pages/biz/custom/dynamics.html">
+			  <span class="mui-icon mui-icon-celue"></span>
+			  <span class="mui-tab-label">自选</span>
+		  </a>
+		<a class="mui-tab-item" href="/pages/biz/business/buy.html?code=000001">
+				<span class="mui-icon mui-icon-zixuan"></span>
+				<span class="mui-tab-label">交易</span>
+			</a>
+			<a class="mui-tab-item" href="/pages/biz/holding/index.html">
+				<span class="mui-icon mui-icon-jingu"></span>
+				<span class="mui-tab-label">持仓</span>
+			</a>
+		  <a class="mui-tab-item" href="/pages/mine/home.html">
+			  <span class="mui-icon mui-icon-my"></span>
+			  <span class="mui-tab-label">我的</span>
+		  </a>
+	</nav>
+</body>
+</html>
+<script src="../../js/jquery-2.2.0.min.js"></script>
+<script src="../../js/mui.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+
+<script type="text/javascript" src="../../js/stock.js"></script>
+<script type="text/javascript">
+    /**
+ * 判断当前时间是否在9:30-11:30, 13:00-15:00（交易时间）
+ */
+function isTradingTime(){
+    var date = new Date();
+    //判断是不是周末
+    var dt=date.getDay();
+    if(dt=='6'||dt=='7'){
+        return false;
+    }
+    //判断当前时间是否在9:30-11:30, 13:00-15:00
+    var h = date.getHours();
+    var mi = date.getMinutes();
+    var s = date.getSeconds();
+    if(h < 10){
+        h = "0" + h;
+    }
+    if(mi < 10){
+        mi = "0"+ mi;
+    }
+    if(s < 10){
+        s = "0" + s;
+    }
+    var curTime = h + ":" + mi + ":" + s;
+//  console.log(curTime);
+    if( curTime >= "09:30:00" && curTime <= "11:30:00" || curTime >= "13:00:00" && curTime <= "15:00:00" ){
+        return true;
+    }
+    return false;
+}
+
+
+
+    var refreshTimer = null;
+    $(".edit_btn").on("tap" , function(){
+        if( $("#searchInput").val() != "" || $(".zixuan_list li").length == 1 ){
+            return false;
+        }
+        $(".select_btn").toggle();
+        $(".delete_panel").toggle();
+        $(this).toggleClass("active");
+
+        if( $(this).hasClass("active") ){
+            if( refreshTimer ){
+                clearInterval( refreshTimer );
+                refreshTimer = null;
+            }
+        }else{
+            refreshTimer =setInterval(refreshPrice,10000);
+        }
+    });
+
+    mui.init({
+        swipeBack: true //启用右滑关闭功能
+    })
+
+    //选项卡
+     mui('body').on('tap', 'a', function() {
+        var data_href = this.getAttribute("data-href");
+        var href = this.getAttribute("href");
+        var url=data_href;
+        if(!url||url==''){
+            url=href;
+        }
+        window.location.href = url;
+     });
+
+    $("#searchInput").keyup(function(){
+        var val = $(this).val();
+        displayItems(val);
+    });
+
+    var listCon = $(".zixuan_list").html();
+    function displayItems(items) {
+        var code = new Array();
+        html='<li class="list_header flex_nowrap">\
+            <div class="select_btn" style="width: 15%; display: none;">\
+            </div>\
+            <span style="width:40%;padding-left: 18px">名称代码</span>\
+            <span style="width:20%">现价</span>\
+            <span style="width:20%">涨跌幅</span>\
+            <span style="width:20%"></span>\
+        </li>';
+        if (items==''){ //搜索结果为空， 置空列表
+            html=listCon;
+            $(".zixuan_list").html( html );
+            refreshTimer =setInterval(refreshPrice,10000);
+        }else{
+            if( refreshTimer ){
+                clearInterval( refreshTimer );
+                refreshTimer = null;
+            }
+            var j = 0;
+            for (var i = 0; i < stocks.length; i++) {
+                var reg = new RegExp('^' + items + '.*$', 'im');
+                if (reg.test(stocks[i][0]) || reg.test(stocks[i][1]) || reg.test(stocks[i][2]) || reg.test(stocks[i][3])) {
+                    if(j < 15){
+                        code.push( stocks[i][3] );
+                        j++;
+                    }else{
+                        break;
+                    }
+                }
+            }
+
+            if(code.length == 0){
+                var html = '<li class="no_more"></li><li style="text-align:center;font-size:12px;color:#999;background:transparent;border:none;">暂无搜索结果</li>';
+                $(".zixuan_list").html( html );
+            }
+
+            code = code.join(",");
+            var _url = "/stock/simple.html",
+                _oData = {code: code};
+            sinaAjax(code, function(res){
+                if(res.state){ // 登录成功
+                    for( var key in res.data ){
+                        var rate = parseFloat(res.data[key].px_change_rate);
+                        var className = "";
+                        if(rate >= 0){
+                            className = "red"
+                        }else{
+                            className = "green"
+                        }
+                        html += '<li class="list_header flex_nowrap">\
+                                    <div style="width: 15%; display: none;" class="mui-input-row mui-checkbox mui-left select_btn">\
+                                        <label></label>\
+                                        <input name="checkbox" value="Item 1" type="checkbox">\
+                                    </div>\
+                                    <a style="width:80%" class="flex_nowrap" href="/pages/biz/business/home.html?code='+ res.data[key].fullCode +'&pageType=zixuanMy">\
+                                        <span class="zi_name" style="width:80%;padding-left: 18px;padding-top: 10px;line-height: 15px;"> <span>'+ res.data[key].prod_name +'</span><span data-code="' + res.data[key].fullCode + '">' + res.data[key].code + '</span></span>\
+                                        <span style="width:45%" class="' + className + '">' + res.data[key].last_px + '</span>\
+                                        <span style="width:45%" class="' + className + '">' + res.data[key].px_change_rate + '%</span>\
+                                        \
+                                    </a>\
+                                    <span style="width:20%">\
+                                        <a href="" class="mui-btn mui-btn-success mui-btn-outlined">立即买入</a>\
+                                    </span>\
+                                </li>';
+                    }
+                    $(".zixuan_list").html( html );
+                }else{
+                    // $alert(res.info);
+                }
+            });
+        }
+    }
+
+    //实时更新
+    refreshTimer =setInterval(refreshPrice,4000);
+    function refreshPrice(){
+        if( !isTradingTime() ){
+            return false;
+        }
+        var code = new Array();
+        if( $(".zixuan_list li+li").length > 0 ){
+            var html='<li class="list_header flex_nowrap">\
+                <div class="select_btn" style="width: 15%; display: none;">\
+                </div>\
+                <span style="width:40%;padding-left: 18px">名称代码</span>\
+                <span style="width:20%">现价</span>\
+                <span style="width:20%">涨跌幅</span>\
+                <span style="width:20%"></span>\
+            </li>';
+            $(".zixuan_list li+li").each(function(){
+                var _code = $(this).find(".zi_name").find("span+span").data("fullcode");
+                code.push( _code );
+            });
+
+            code = code.join(",");
+            var _url = "/stock/simple.html",
+                _oData = {code: code};
+            sinaAjax(code , function(res){
+                if(res.state){ // 登录成功
+                    if( $(".edit_btn").hasClass("active") ){
+                        return false;
+                    }
+                    for( var key in res.data ){
+                        var rate = parseFloat(res.data[key].px_change_rate);
+                        var className = "";
+                        if(rate >= 0){
+                            className = "red"
+                        }else{
+                            className = "green"
+                        }
+                        html += '<li class="list_header flex_nowrap">\
+                                    <div style="width: 15%; display: none;" class="mui-input-row mui-checkbox mui-left select_btn">\
+                                        <label></label>\
+                                        <input name="checkbox" value="Item 1" type="checkbox">\
+                                    </div>\
+                                    <span style="width:80%" class="flex_nowrap" href="/pages/biz/business/home.html?code='+ res.data[key].code +'&pageType=zixuanMy">\
+                                        <span class="zi_name" style="width:80%;padding-left: 18px;padding-top: 10px;line-height: 15px;"> <span>'+ res.data[key].prod_name +'</span><span data-code="' + res.data[key].fullCode + '">' + res.data[key].code + '</span></span>\
+                                        <span style="width:45%" class="' + className + '">' + res.data[key].last_px + '</span>\
+                                        <span style="width:45%" class="' + className + '">' + res.data[key].px_change_rate + '%</span>\
+                                        \
+                                    </span>\
+                                    <span style="width:20%">\
+                                        <a href="" class="mui-btn mui-btn-success mui-btn-outlined">立即买入</a>\
+                                    </span>\
+                                </li>';
+                    }
+                    $(".zixuan_list").html( html );
+                }else{
+                    // $alert(res.info);
+                }
+            });
+        }
+    }
+
+    // 删除自选
+    $(".zixun_delete_btn").click(function(){
+        if($(".zixuan_list li+li").length > 0){
+            var code = new Array();
+            $(".zixuan_list li+li").each(function(){
+                if( $(this).find("input").is(":checked") ){
+                    var _code = $(this).find(".zi_name span+span").html();
+                    code.push(_code);
+                }
+            });
+            if(code.length == 0){
+                return false;
+            }
+            var _url = '/user/del-optional.html',
+                _oData = {ids: code};
+            $ajaxCustom(_url, _oData, function(res){
+                if(res.state){ // 登录成功
+                    $alert("操作成功！");
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 500);
+                }else{
+                    $alert(res.info);
+                }
+            });
+        }
+        
+    });
+
+
+
+    //搜索历史
+        $("body").on("tap", ".zixuan_list span", function(){
+			debugger
+            var code = $(this).find(".zi_name span+span").html();
+            var storage = window.localStorage;
+            if( storage.searchHistory ){
+                var searchHistory = storage.searchHistory;
+                searchHistory = searchHistory.split(",");
+                var index = searchHistory.indexOf(code);
+                if (index > -1) {
+                    searchHistory.splice(index, 1);
+                }
+                if( searchHistory.length >= 10 ){
+                    searchHistory.splice(8, searchHistory.length - 9);
+                }
+                searchHistory.unshift( code );
+                searchHistory = searchHistory.join(",");
+                storage.searchHistory = searchHistory;
+            }else{
+                storage.searchHistory = code;
+            }
+            if( $("#searchInput").val() != "" ){
+                window.location.href = "/pages/biz/business/home.html?code=" + code;
+            }
+        });
+</script>
