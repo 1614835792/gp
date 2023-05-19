@@ -156,7 +156,7 @@ nav.ml_tab .mui-active .mui-icon-my:before{
     margin: 0 auto 15px auto;
     border-radius: 10px;
     box-shadow: 0 0 10px #e6e6e6;
-    background: #FFF url(/static/images/mine/info_bg1.png) center no-repeat;
+    background: #FFF url(../img/info_bg1.png) center no-repeat;
     background-size: 100% 100%;
 }
 .top_btn img{

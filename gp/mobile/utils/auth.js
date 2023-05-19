@@ -28,7 +28,7 @@ export function checkPermission(path) {
 			return true
 		} else {
 			uni.showToast({
-				title: "页面【" + path + "】需要进行登录，才能进行访问！",
+				title: "登录已过期！",
 				icon: 'none'
 			})
 			uni.reLaunch({	

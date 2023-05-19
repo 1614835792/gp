@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>
+提现
+</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <link href="../../css/mui.min.css" rel="stylesheet">
+    <link href="../../css/person.css" rel="stylesheet">
+    
+<script type="text/javascript">
+//iOS Web APP中点击链接跳转到Safari 浏览器新标签页的问题 devework.com
+//stanislav.it/how-to-prevent-ios-standalone-mode-web-apps-from-opening-links-in-safari
+if(("standalone" in window.navigator) && window.navigator.standalone){
+var noddy, remotes = false;
+document.addEventListener('click', function(event) {
+noddy = event.target;
+while(noddy.nodeName !== "A" && noddy.nodeName !== "HTML") {
+noddy = noddy.parentNode;
+}
+if('href' in noddy && noddy.href.indexOf('http') !== -1 && (noddy.href.indexOf(document.location.host) !== -1 || remotes))
+{
+event.preventDefault();
+document.location.href = noddy.href;
+}
+},false);
+}
+</script>
+<style type="text/css">
+    .withdrawal-name {
+        line-height: 30px;
+    }
+    .withdrawal-con .control-style {
+        line-height: 30px;
+    }
+    .boxflex1 .get-btn {
+        line-height: 30px;
+    }
+    .withdrawal-con.yanzheng {
+        width: 40%;
+    }
+    .boxflex1 .get-btn {
+        border: 1px solid #0066FF;
+        padding: 0 .2rem;
+        width: 80px;
+        text-align: center;
+    }
+
+</style>
+
+</head>
+
+<body class="withdrew_body">
+
+    
+	<div class="withdrew_body">
+		<header class="has_back_top ">
+			提现
+			<!--<a href="javascript:history.go(-1)" class="back_icon">-->
+			<a href="home.html" class="back_icon">
+				<img src="../../img/back_icon.png">
+			</a>
+		</header>
+		<!--<header class="header_con">-->
+		    <!--<a href="/user/home.html" class="lf">-->
+		        <!--<img src="/resource/home/img/call_back.png">-->
+		    <!--</a>-->
+		    <!--<p>提现</p>-->
+		<!--</header>-->
+		<div style="width: 100%; height: 58px;"></div>
+		<div class="personal">
+		    <div class="boxflex boxflex1">
+		        <div class="img-wrap"><img class="userimage" src="../../img/default-user-img.png"></div>
+		        <div class="box_flex_1">
+		            <div class="p_zichan">中鑫8888</div>
+		            <div class="cash">可提现金额：<b class="mon">102,263.00</b>元</div>
+		        </div>
+		    </div>
+		    <form id="with-drawForm" method="post">
+				<div class="boxflex1 mt10 clearfloat">
+			        <div class="withdrawal-name">提现金额</div>
+			        <div class="withdrawal-con">
+			            <div class="form-group field-userwithdraw-amount required">
+							<input type="text" id="userwithdraw-amount" class="control-style" name="money" placeholder="请输入提现金额">
+							<div class="help-block"></div>
+						</div>        
+					</div>
+			    </div>
+			    <div class="boxflex1 none clearfloat">
+			        <div class="withdrawal-name">到账银行</div>
+			        <div id="dd" class="wrapper-dropdown-1" tabindex="1">
+			            <div class="form-group field-useraccount-bank_name required">
+							<select id="useraccount-bank_name" class="form-control" name="card">
+															    <option value="1">中国工商银行（尾号7010）</option>
+                                							</select>
+							<div class="help-block"></div>
+						</div>       
+					</div>
+		    	</div>
+			    <div class="boxflex1 none clearfloat">
+			        <div class="withdrawal-name">手机号</div>
+			        <div class="withdrawal-con" tabindex="1">
+			            <input type="text" value="138****8888" class="control-style" id="mobile" readonly="readonly" placeholder="138****8888">
+			        </div>
+			    </div>
+			<!--    <div class="boxflex1 none clearfloat">
+			        <div class="withdrawal-name">验证码</div>
+			        <div class="withdrawal-con yanzheng" tabindex="1">
+			            <input type="text" id="user-verifycode" class="control-style" placeholder="输入短信验证码" name="code">
+			        </div>
+			        <div class="get-btn" id="verifyCodeBtn">获取验证码</div>
+			    </div> -->
+			    <div class="withdrawal-tips">
+			        <ul>提现规则：
+			            <li>1、提现时间工作日上午9:00到晚16:00。</li>
+			            <li>2、每笔提现扣除0元手续费。</li>
+			            <li>3、每笔提现金额最小10元。</li>
+			            <li>4、如需提现至微信或支付宝请联系客服提现。</li>
+			            <li></li>
+			        </ul>
+			    </div>
+
+			    <div class="recharge-btn mt10" id="submitBtn">立即提现</div>
+			    <div class="form-group field-useraccount-bank_mobile required">
+					<input type="hidden" id="useraccount-bank_mobile" class="form-control" name="mobile" value="13888888888">
+					<div class="help-block"></div>
+				</div>    
+			</form>
+		</div>
+	</div>
+
+    
+
+</body>
+</html>
+<script src="../../js/jquery-2.2.0.min.js"></script>
+<script src="../../js/mui.min.js"></script>
+<script type="text/javascript" src="../../js/common.js?time=123456789"></script>
+
+	<script>
+	$(function () {
+		var flag = false;
+	    $("#submitBtn").click(function () {
+	    	if( flag ){
+	    		$alert("提现提交中，请稍后！");
+	    		return false;
+	    	}
+	    	flag = true;
+            var _url = "user/withdraw.html",
+                _oData = $("form").serialize();
+            $ajaxCustom(_url, _oData, function(res){
+                if(res.state){ // 登录成功
+                    $alert("申请提现成功，请等待审核！");
+                    flag = false;
+                    setTimeout(function(){
+                        if(res.data.url){
+                            window.location.href = res.data.url;
+                        }else{
+                            window.location.href = "/";
+                        }
+                    }, 1000);
+                }else{
+                	flag = false;
+                    $alert(res.info);
+                }
+            });
+	    });
+	    // 验证码
+	    $("#verifyCodeBtn").click(function () {
+	    	if( $(this).hasClass("disabled") ){
+	    		return false;
+	    	}
+	    	var that = this;
+            var _url = "/captcha.html",
+                _mobile = $("input[name='mobile']").val(),
+                _oData = {mobile:_mobile, act:"withdraw"};
+            $ajaxCustom(_url, _oData, function(res){
+                if(res.state){ // 登录成功
+                    $alert("发送成功");
+                    //$("input[name='code']").val(res.data.code);
+                    //倒计时
+                    var time = 60;
+                    $(that).addClass("disabled").html( time + " s");;
+                    var timer = setInterval(function(){
+                    	if( time == 0 ){
+                    		$(that).html("获取验证码").removeClass("disabled");
+                    		clearInterval( timer );
+                    		timer = null;
+                    		return false;
+                    	}
+                    	time --;
+                    	$(that).html( time + " s");
+                    },1000);
+                }else{
+                    $alert(res.info);
+                }
+            });
+	    });
+	});
+    var _bind = "1";
+    if(_bind == "0"){
+        var _jump = "/user/modify-card.html?callback=L3VzZXIvd2l0aGRyYXcuaHRtbA%3D%3D";
+        $alert("请先绑定银行卡！");
+        setTimeout(function(){
+            window.location.href = _jump;
+        }, 1000);
+    }
+	</script>

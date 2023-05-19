@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title> 逐笔明细  </title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <link href="../../css/mui.min.css" rel="stylesheet">
+    <link href="../../css/person.css" rel="stylesheet">
+    
+
+<script type="text/javascript">
+//iOS Web APP中点击链接跳转到Safari 浏览器新标签页的问题 devework.com
+//stanislav.it/how-to-prevent-ios-standalone-mode-web-apps-from-opening-links-in-safari
+if(("standalone" in window.navigator) && window.navigator.standalone){
+var noddy, remotes = false;
+document.addEventListener('click', function(event) {
+noddy = event.target;
+while(noddy.nodeName !== "A" && noddy.nodeName !== "HTML") {
+noddy = noddy.parentNode;
+}
+if('href' in noddy && noddy.href.indexOf('http') !== -1 && (noddy.href.indexOf(document.location.host) !== -1 || remotes))
+{
+event.preventDefault();
+document.location.href = noddy.href;
+}
+},false);
+}
+</script>
+<style type="text/css">
+.koptions_nav p a {
+	color: #aaa;
+}
+.postion_tab_con li {
+
+}
+.dropload-down{
+    text-align: -webkit-center;
+}
+.stock-mingxi{
+ margin-bottom:0px;
+}
+    .dropload_container{
+        position: absolute;
+        width: 100%;
+        left: 0;
+        /*top: 34px;*/
+           top: 60px;
+        /*background: #fff;*/
+        margin-bottom: 58px;
+    }
+        .postion_tab_con{
+        display: block!important;
+    }
+      .postion_tab_con {
+        position: relative;
+        width: 100%;
+        left: 0;
+        top: 0;
+        background: #fff;
+        margin-bottom: 0px;
+    }
+        .postion_tab_con {
+        margin-bottom: 0;
+    }
+</style>
+
+</head>
+
+<body class="quick_body  mui-ios mui-ios-10 mui-ios-10-3">
+	
+    
+	<header class="has_back_top ">
+		<span id="guName" data-code="000001" data-fullcode="000001"> 逐笔明细 </span>
+		<a href="javascript:history.go(-1)" class="back_icon">
+			<img src="../../img/back_icon.png">
+		</a>
+	</header>
+	<div class="dropload_container">
+	 <div class="postion_mingxi stock-mingxi" >
+            </div>
+        </div>
+	
+     
+</body>
+</html>
+<script src="../../js/jquery-2.2.0.min.js"></script>
+<script src="../../js/mui.min.js"></script>
+<script type="text/javascript" src="../../js/common.js?time=123456789"></script>
+ 
+	<script type="text/javascript" src="../../js/dropload.min.js"></script>
+<script type="text/javascript">
+       //分页
+    var size = 5;
+    var now = 0;
+    var total = 1;
+
+    function initData(me){
+       // var id = $(".recharge_mask").attr("data-id");
+        var _url = "/index/stock/getdetailinfo.html",
+            _oData = {page: now, market:1, shotcode:'000001'};
+        $ajaxCustom(_url, _oData, function(res){
+          if(res.state == 1){ // 成功
+            now ++;
+            total = res.data.total_page;
+            var data = res.data.detaildata;
+            var html = "";
+            for(var key in data){
+           	  if (data[key]['TRADE_TYPE_STR'] == "1") {
+           		html += '<ul class="data  clear_fl">'+
+				'<li class="">'+data[key]['DATE_STR']+'</li>'+
+				'<li class="green">'+data[key]['PRICE']+'</li>'+
+				'<li class="green">'+data[key]['VOLUME_INC']+'</li>'+
+				'<li class="green">卖出</li></ul>';
+           	  }else {
+              	html += '<ul class="data  clear_fl">'+
+				'<li class="">'+data[key]['DATE_STR']+'</li>'+
+				'<li class="red">'+data[key]['PRICE']+'</li>'+
+				'<li class="red">'+data[key]['VOLUME_INC']+'</li>'+
+				'<li class="red">买入</li></ul>';
+           	  }
+            }
+            $('.postion_mingxi').append(html);
+          }else{
+            $alert(res.info);
+          }
+          me.resetload();
+        });
+    }
+
+    $(function(){
+        // dropload
+        $('.dropload_container').dropload({
+            scrollArea : window,
+            domDown : {
+                domClass   : 'dropload-down',
+                domRefresh : '<div class="dropload-refresh">↑上拉加载更多</div>',
+                domLoad    : '<div class="dropload-load"><span class="loading"></span>加载中...</div>',
+                domNoData  : '<div class="dropload-noData">暂无更多数据</div>'
+            },
+            loadDownFn : function(me){
+                if(total >= now){
+                    initData(me);
+                }else{
+                    // 锁定
+                    me.lock();
+                    // 无数据
+                    me.noData();
+                    me.resetload();
+                    return false;
+                }
+            },
+            threshold : 50
+        });
+    });
+
+</script>
+	

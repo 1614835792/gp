@@ -92,27 +92,27 @@ body{
         <button class="rt zixun_delete_btn">删除</button>
     </div>
 	<nav class="ml_tab mui-bar mui-bar-tab">
-		  <a class="mui-tab-item" href="/pages/home/index.html">
-			  <span class="mui-icon mui-icon-home"></span>
-			  <span class="mui-tab-label">首页</span>
-		  </a>
-		  <a class="mui-tab-item center_item" href="/pages/biz/custom/dynamics.html">
-			  <span class="mui-icon mui-icon-celue"></span>
-			  <span class="mui-tab-label">自选</span>
-		  </a>
-		<a class="mui-tab-item" href="/pages/biz/business/buy.html?code=000001">
+	      <a class="mui-tab-item" href="../home/index.html">
+	          <span class="mui-icon mui-icon-home"></span>
+	          <span class="mui-tab-label">首页</span>
+	      </a>
+	      <a class="mui-tab-item center_item" href="../strategy/dynamics.html">
+	          <span class="mui-icon mui-icon-celue"></span>
+	          <span class="mui-tab-label">自选</span>
+	      </a>
+	  	<a class="mui-tab-item" href="../stock/buy.html?code=000001">
 				<span class="mui-icon mui-icon-zixuan"></span>
 				<span class="mui-tab-label">交易</span>
 			</a>
-			<a class="mui-tab-item" href="/pages/biz/holding/index.html">
+			<a class="mui-tab-item" href="../order/index.html">
 				<span class="mui-icon mui-icon-jingu"></span>
 				<span class="mui-tab-label">持仓</span>
 			</a>
-		  <a class="mui-tab-item" href="/pages/mine/home.html">
-			  <span class="mui-icon mui-icon-my"></span>
-			  <span class="mui-tab-label">我的</span>
-		  </a>
-	</nav>
+	      <a class="mui-tab-item" href="../user/home.html">
+	          <span class="mui-icon mui-icon-my"></span>
+	          <span class="mui-tab-label">我的</span>
+	      </a>
+	  </nav>
 </body>
 </html>
 <script src="../../js/jquery-2.2.0.min.js"></script>
@@ -249,7 +249,7 @@ function isTradingTime(){
                                         <label></label>\
                                         <input name="checkbox" value="Item 1" type="checkbox">\
                                     </div>\
-                                    <a style="width:80%" class="flex_nowrap" href="/pages/biz/business/home.html?code='+ res.data[key].fullCode +'&pageType=zixuanMy">\
+                                    <a style="width:80%" class="flex_nowrap" href="../stock/home.html?code='+ res.data[key].fullCode +'&pageType=zixuanMy">\
                                         <span class="zi_name" style="width:80%;padding-left: 18px;padding-top: 10px;line-height: 15px;"> <span>'+ res.data[key].prod_name +'</span><span data-code="' + res.data[key].fullCode + '">' + res.data[key].code + '</span></span>\
                                         <span style="width:45%" class="' + className + '">' + res.data[key].last_px + '</span>\
                                         <span style="width:45%" class="' + className + '">' + res.data[key].px_change_rate + '%</span>\
@@ -310,7 +310,7 @@ function isTradingTime(){
                                         <label></label>\
                                         <input name="checkbox" value="Item 1" type="checkbox">\
                                     </div>\
-                                    <span style="width:80%" class="flex_nowrap" href="/pages/biz/business/home.html?code='+ res.data[key].code +'&pageType=zixuanMy">\
+                                    <span style="width:80%" class="flex_nowrap" href="../stock/home.html?code='+ res.data[key].code +'&pageType=zixuanMy">\
                                         <span class="zi_name" style="width:80%;padding-left: 18px;padding-top: 10px;line-height: 15px;"> <span>'+ res.data[key].prod_name +'</span><span data-code="' + res.data[key].fullCode + '">' + res.data[key].code + '</span></span>\
                                         <span style="width:45%" class="' + className + '">' + res.data[key].last_px + '</span>\
                                         <span style="width:45%" class="' + className + '">' + res.data[key].px_change_rate + '%</span>\
@@ -361,28 +361,28 @@ function isTradingTime(){
 
 
     //搜索历史
-        $("body").on("tap", ".zixuan_list span", function(){
-			debugger
-            var code = $(this).find(".zi_name span+span").html();
-            var storage = window.localStorage;
-            if( storage.searchHistory ){
-                var searchHistory = storage.searchHistory;
-                searchHistory = searchHistory.split(",");
-                var index = searchHistory.indexOf(code);
-                if (index > -1) {
-                    searchHistory.splice(index, 1);
-                }
-                if( searchHistory.length >= 10 ){
-                    searchHistory.splice(8, searchHistory.length - 9);
-                }
-                searchHistory.unshift( code );
-                searchHistory = searchHistory.join(",");
-                storage.searchHistory = searchHistory;
-            }else{
-                storage.searchHistory = code;
-            }
-            if( $("#searchInput").val() != "" ){
-                window.location.href = "/pages/biz/business/home.html?code=" + code;
-            }
-        });
+   //      $("body").on("tap", ".zixuan_list span", function(){
+			// debugger
+   //          var code = $(this).find(".zi_name span+span").html();
+   //          var storage = window.localStorage;
+   //          if( storage.searchHistory ){
+   //              var searchHistory = storage.searchHistory;
+   //              searchHistory = searchHistory.split(",");
+   //              var index = searchHistory.indexOf(code);
+   //              if (index > -1) {
+   //                  searchHistory.splice(index, 1);
+   //              }
+   //              if( searchHistory.length >= 10 ){
+   //                  searchHistory.splice(8, searchHistory.length - 9);
+   //              }
+   //              searchHistory.unshift( code );
+   //              searchHistory = searchHistory.join(",");
+   //              storage.searchHistory = searchHistory;
+   //          }else{
+   //              storage.searchHistory = code;
+   //          }
+   //          if( $("#searchInput").val() != "" ){
+   //              window.location.href = "/pages/biz/business/home.html?code=" + code;
+   //          }
+   //      });
 </script>
