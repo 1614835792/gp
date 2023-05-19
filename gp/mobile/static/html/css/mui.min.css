@@ -4524,3 +4524,6 @@ scaleX
 	height: 100%;
 	border: 0
 }
+* {
+  touch-action: pan-y;
+}

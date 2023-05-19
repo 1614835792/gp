@@ -213,11 +213,35 @@
     
 </body>
 </html>
+<script type="text/javascript" src="https://js.cdn.aliyun.dcloud.net.cn/dev/uni-app/uni.webview.0.1.52.js"></script>
 <script src="../../js/jquery-2.2.0.min.js"></script>
 <script src="../../js/mui.min.js"></script>
 <script type="text/javascript" src="../../js/common.js"></script>
 <script type="text/javascript" src="../../js/config.js"></script>
 
+<script type="text/javascript">
+	
+	        
+
+	
+	$(function(){
+		document.addEventListener('UniAppJSBridgeReady',function(){
+			
+		    console.log("======plus ready==========");  
+			
+		}) 
+		
+		var appToken = localStorage.getItem('App-Token');
+		document.addEventListener('UniAppJSBridgeReady', function() {  
+		   if(null == appToken || undefined == appToken || '' == appToken){
+		   	uni.navigateTo({
+		   		url:'/pages/login'
+		   	})
+		   } 
+		});
+		
+	})
+</script>
 	<script type="text/javascript">
 		$(".qiquan_link").click(function(e){
 			e.preventDefault();
@@ -555,4 +579,5 @@
 		        }
 		    });
 		}
+		
 	</script>

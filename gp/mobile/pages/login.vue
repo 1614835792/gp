@@ -93,24 +93,27 @@
 	// 密码登录
 	const pwdLogin = async () => {
 		proxy.$modal.loading("登录中...")
-		store.dispatch('Login', loginForm).then(() => {
-			// 所有异步请求结束之后才能够进行下一步操作
-			Promise.all([
-				// store.dispatch('GetUserLoginMenu'),
-				 store.dispatch('GetUserInfo'),
-				// store.dispatch('GetDictTypeTreeData'),
-			]).then((result) => {
-				proxy.$tab.reLaunch('/pages/home/index')
-				proxy.$modal.closeLoading()
-			}).catch(err => {
-				console.error(err)
-			})
-		}).catch(err => {
-			console.error(err)
-		})
+		// store.dispatch('Login', loginForm).then(() => {
+		// 	// 所有异步请求结束之后才能够进行下一步操作
+		// 	Promise.all([
+		// 		// store.dispatch('GetUserLoginMenu'),
+		// 		 store.dispatch('GetUserInfo'),
+		// 		// store.dispatch('GetDictTypeTreeData'),
+		// 	]).then((result) => {
+		// 		proxy.$tab.reLaunch('/pages/home/index')
+		// 		proxy.$modal.closeLoading()
+		// 	}).catch(err => {
+		// 		console.error(err)
+		// 	})
+		// }).catch(err => {
+		// 	console.error(err)
+		// })
 		// uni.navigateTo({
 		//     url: '/pages/home/index'   
 		// });
+		window.localStorage.setItem('App-Token','123456')
+		proxy.$tab.reLaunch('/pages/home/index')
+		proxy.$modal.closeLoading()
 	}
 </script>
 

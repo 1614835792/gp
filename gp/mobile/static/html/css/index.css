@@ -777,7 +777,9 @@ nav.ml_tab .mui-icon-zixuan:before {
 }
 /* ---end--- */
 
-
+* {
+  touch-action: pan-y;
+}
 
 
 

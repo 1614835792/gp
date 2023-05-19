@@ -741,7 +741,7 @@ $(".jian").click(function(){
         var valjia=Number(valtxt)-100*1;
 		$(".custom_count").val(valjia);
 		if(valjia%1000==0){
-			$(".x_y_options").find(".active").data("money")=valjia;
+			$(".x_y_options").find("active").data("money")=valjia;
 		}
 
 		calcNumj()
@@ -1206,7 +1206,7 @@ function getHomeHtml(){
                             console.log("html:"+html)
                             $(".search_content_box").html( "<ul class='zixuan_list'></ul>" );
                             $(".zixuan_list").html(html);
-                            refreshTimer = setInterval(refreshPrice(),3000);
+                            refreshTimer = setInterval(refreshPrice1(),3000);
                         }else{
                             // $alert(res.info);
                         }
